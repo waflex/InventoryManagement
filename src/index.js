@@ -35,14 +35,14 @@ app.use(express.urlencoded({ extended: true }));
 
 //Variables Globales
 app.use((req, res, next) => {
-    next()
+    next();
 });
 
 
 //Rutas
 app.use(require("./routes"));
 app.use(require("./routes/autentication"));
-app.use('/links', require("./routes/links"));
+app.use('/Inventario', require("./routes/Inventario"));
 
 
 //PUBLIC

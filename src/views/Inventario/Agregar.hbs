@@ -1,0 +1,68 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card ">
+                <div class="card-body">
+                    <form action="/Inventario/Agregar" method="post">
+                        <div class="form-group p-2">
+                            Nombre Producto
+                            <input class="form-control" type="text" name="NombreP"
+                                placeholder="Nombre Producto"></input>
+                        </div>
+                        <div class="form-group p-2">
+                            Cantidad Producto
+                            <input class="form-control" type="text" name="StockA"
+                                placeholder="Ingrese Cantidad"></input>
+                        </div>
+                        <div class="form-group p-2">Stock minimo
+                            <input class="form-control" type="text" name="StockMin"
+                                placeholder="Cantidad Minima para el Producto"></input>
+                        </div>
+                        <div class="form-group p-2">
+                            Institucion a la que pertenece
+                            <select class="custom-select form-control" id="Institucion" name="Institucion">
+                                <option selected>Seleccione Institucion</option>
+                                <option value="IPVC">IPVC</option>
+                                <option value="UB">UB</option>
+                                <option value="UAC">UAC</option>
+                            </select>
+                        </div>
+                        <div class="form-group p-2">
+                            Categoria del Producto
+                            <select class="custom-select form-control" name="Tipo" id="Seccion">
+                                <option selected>Seleccione Categoria</option>
+                                <option value="Oficina">Oficina</option>
+                                <option value="Limpieza">Limpieza</option>
+                                <option value="Impresoras">Impresoras</option>
+                                <option value="Toners">Toners</option>
+                                <option value="Productos Electricos">Productos Electricos</option>
+                                <option value="Computadoras">Computadoras</option>
+                                <option value="Perifericos">Perifericos</option>
+                            </select>
+                        </div>
+                        <div class="form-group p-2">
+                            Ubicacion
+                            <select class="custom-select form-control" name="Ubicacion" id="Ubicacion">
+                                <option selected>Donde esta guardado</option>
+                                <option value="Bodega 1">Bodega 1</option>
+                                <option value="Bodega 2">Bodega 2</option>
+                                <option value="Bodega 3">Bodega 3</option>
+                                <option value="Bodega IPVC">Bodega IPVC/UAC</option>
+                            </select>
+                        </div>
+                        <div class="form-group p-2">
+                            Observaciones
+                            <textarea class="form-control" name="Observacion" rows="5" maxlength="250"
+                                placeholder="Observaciones"></textarea>
+                        </div>
+                        <div class="form-group p-2">
+                            <button class="form-control btn btn-success btn-block">
+                                guardar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

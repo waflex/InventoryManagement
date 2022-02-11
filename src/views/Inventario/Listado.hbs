@@ -1,0 +1,51 @@
+<div class="container p-4">
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre Producto</th>
+                    <th>Stock Actual</th>
+                    <th>Stock Minimo</th>
+                    <th>Institucion</th>
+                    <th>Tipo</th>
+                    <th>Ubicación</th>
+                    <th>Observacion</th>
+                    <th>Agregado Por</th>
+                    <th>Agregado hace</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                {{#if mayor data}}
+                <tr style="background-color:#FF0000">
+                    <td>{{N_Producto}}</td>
+                    <td>{{Stock_Actual}}</td>
+                    <td>{{Stock_Minimo}}</td>
+                    <td>{{Institucion}}</td>
+                    <td>{{Tipo}}</td>
+                    <td>{{Ubicacion}}</td>
+                    <td>{{Observacion}}</td>
+                    <td>{{Func_Agrega}}</td>
+                    <td>{{timeago F_Agregado}}</td>
+                    <td><a href="/Modificar/{{Id_Producto}}">Modificar</a></td>
+                    <Td><a href="/Eliminar/{{Id_Producto}}">Eliminar</a></Td>
+                </tr>
+                {{/if}}
+                <tr>
+                    <td>{{N_Producto}}</td>
+                    <td>{{Stock_Actual}}</td>
+                    <td>{{Stock_Minimo}}</td>
+                    <td>{{Institucion}}</td>
+                    <td>{{Tipo}}</td>
+                    <td>{{Ubicacion}}</td>
+                    <td>{{Observacion}}</td>
+                    <td>{{Func_Agrega}}</td>
+                    <td>{{timeago F_Agregado}}</td>
+                    <td><a href="/Modificar/{{Id_Producto}}">Modificar</a></td>
+                    <Td><a href="/Eliminar/{{Id_Producto}}">Eliminar</a></Td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

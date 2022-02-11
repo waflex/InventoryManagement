@@ -1,0 +1,5 @@
+{
+    "dependencies": "npm i express  express-session mysql express-handlebars express-mysql-session bcryptjs connect-flash express-validator morgan passport passport-local timeago.js",
+    "Dev-Dependencies": "npm i nodemon -D"
+
+}
