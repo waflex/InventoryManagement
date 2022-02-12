@@ -3,6 +3,12 @@ const morgan = require("morgan");
 const { create } = require("express-handlebars");
 const path = require("path");
 const { urlencoded } = require("express");
+const flash = require("connect-flash");
+const esession = require('express-session');
+const MySQLStore = require('express-mysql-session');
+const { database } = require("./keys");
+
+
 //Inicializacion
 const app = express();
 
@@ -29,12 +35,21 @@ y lograr crear el motor de forma personalizada y no lo que viene por defecto asi
 
 
 //Middelware
+app.use(esession({
+    secret: 'DevNotCooked_(JRT)',
+    resave: false,
+    saveUninitialized: false,
+    store: new MySQLStore(database),
+}));
+app.use(flash());
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 
 
+
 //Variables Globales
 app.use((req, res, next) => {
+    app.locals.success = req.flash('success');
     next();
 });
 

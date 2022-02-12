@@ -6,19 +6,19 @@ const pool = require("../database");
 //Links Pag Principal Inventario
 router.get('/', async(req, res) => {
     const data = await pool.query('SELECT * FROM productos');
-    const result = []
+    const result = [];
     for (let key in data) {
 
         if (data[key].Stock_Actual <= data[key].Stock_Minimo) {
             result.push(Object.assign({}, data[key], {
                 status: true
-            }))
+            }));
         } else {
             result.push(Object.assign({}, data[key], {
                 status: false
-            }))
-        };
-    };
+            }));
+        }
+    }
     res.render("Inventario/Listado", { result });
 });
 
@@ -32,9 +32,9 @@ router.post("/Agregar", async(req, res) => {
     const { N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
     const NuevoProducto = {
         Id_Producto: makeid(5),
-        N_Producto: NombreP,
-        Stock_Actual: StockA,
-        Stock_Minimo: StockMin,
+        N_Producto,
+        Stock_Actual,
+        Stock_Minimo,
         Institucion,
         Tipo,
         Ubicacion,
@@ -42,8 +42,8 @@ router.post("/Agregar", async(req, res) => {
         Func_Agrega: "Admin"
 
     };
-    console.log(NuevoProducto);
     await pool.query('INSERT INTO `productos` set ?', [NuevoProducto]);
+    req.flash('success', 'Producto Guardado Correctamente');
     res.redirect("/Inventario");
 });
 
@@ -54,7 +54,6 @@ router.get("/Modificar/:Id_Producto", async(req, res) => {
     const { Id_Producto } = req.params;
     const data = await pool.query('SELECT * FROM productos WHERE Id_Producto= ?', [Id_Producto]);
 
-    console.log(data[0]);
     res.render("Inventario/Modificar", { data: data[0] });
 
     //req.render("/Modificar");

@@ -37,7 +37,21 @@
 <body>
 
   {{>Navbar}}
-
+  {{!#if success}}
+  <div class="container p-4">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <div class="alert alert-dismissable alert-success mx-auto fade show" role="alert">
+          <h4>
+            Producto Agregado <button type="button" class="close ml-4" data-dismiss="alert" aria-label="Close">
+          </button>
+          </h4><strong>{{!success}}</strong><p> en la Base de Datos</p>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  {{!/if}}
   {{{ body }}}
 
 

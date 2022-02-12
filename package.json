@@ -10,7 +10,7 @@
         "dev": "nodemon src",
         "test": "testcon.js"
     },
-    "author": "DevNotCooked (JRT)",
+    "author": "DevNotCooked_(JRT)",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
