@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-02-2022 a las 22:14:29
+-- Tiempo de generación: 12-02-2022 a las 05:18:10
 -- Versión del servidor: 10.4.21-MariaDB
 -- Versión de PHP: 8.0.10
 
@@ -24,6 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `modificaciones productos`
+--
+
+CREATE TABLE `modificaciones productos` (
+  `Id_Producto` varchar(20) NOT NULL,
+  `Cant_Previa` int(4) NOT NULL,
+  `Cant_Nueva` int(4) NOT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Id_Usuario` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_usuarios`
+--
+
+CREATE TABLE `mod_usuarios` (
+  `Id_Usuario` varchar(15) NOT NULL,
+  `Psw` varchar(24) NOT NULL,
+  `Psw_Antiguo` varchar(24) NOT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Estado` varchar(14) NOT NULL,
+  `Id_Usuario_Mod` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `productos`
 --
 
@@ -36,7 +65,7 @@ CREATE TABLE `productos` (
   `Tipo` varchar(15) NOT NULL,
   `Ubicacion` varchar(10) NOT NULL,
   `Observacion` varchar(250) NOT NULL,
-  `Func_Agrega` int(15) DEFAULT NULL,
+  `Func_Agrega` varchar(15) DEFAULT NULL,
   `F_Agregado` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -45,7 +74,26 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Id_Producto`, `N_Producto`, `Stock_Actual`, `Stock_Minimo`, `Institucion`, `Tipo`, `Ubicacion`, `Observacion`, `Func_Agrega`, `F_Agregado`) VALUES
-('hk2rl', 'Alcohol Gel', 122, 20, 'IPVC', 'Impresoras', 'Bodega IPV', 'Son pocos', 0, '2022-02-11 20:56:33');
+('sd564f', 'Alcohol Gel', 50, 10, 'IPVC', 'Limpieza', 'Bodega 1', 'Alto Stock', 'Admin', '2022-02-12 04:13:48');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `solicitudes`
+--
+
+CREATE TABLE `solicitudes` (
+  `Id_Solicitud` varchar(10) NOT NULL,
+  `Id_Usuario` varchar(15) NOT NULL,
+  `Id_Producto` varchar(20) NOT NULL,
+  `Cantidad` varchar(3) NOT NULL,
+  `Estado` varchar(10) NOT NULL,
+  `Id_Usuario_Entrega` varchar(15) DEFAULT NULL,
+  `Observacion` varchar(250) DEFAULT NULL,
+  `Cant_Final` varchar(3) DEFAULT NULL,
+  `F_Solicitud` timestamp NOT NULL DEFAULT current_timestamp(),
+  `F_Respuesta` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -64,20 +112,83 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`ID`, `Nom_usu`, `Cont_usu`, `Lst_conn`, `F_add`, `Estado`, `Cargo`) VALUES
+('Admin', 'Admin', 'Admin', '2022-02-12 04:12:43', '2022-02-12 04:12:43', 'Habilitado', 'Administrador');
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `modificaciones productos`
+--
+ALTER TABLE `modificaciones productos`
+  ADD KEY `Id_Producto` (`Id_Producto`,`Id_Usuario`),
+  ADD KEY `Id_Usuario` (`Id_Usuario`);
+
+--
+-- Indices de la tabla `mod_usuarios`
+--
+ALTER TABLE `mod_usuarios`
+  ADD KEY `Id_Usuario` (`Id_Usuario`,`Id_Usuario_Mod`),
+  ADD KEY `Id_Usuario_Mod` (`Id_Usuario_Mod`);
 
 --
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`Id_Producto`);
+  ADD PRIMARY KEY (`Id_Producto`),
+  ADD KEY `Func_Agrega` (`Func_Agrega`);
+
+--
+-- Indices de la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  ADD PRIMARY KEY (`Id_Solicitud`),
+  ADD KEY `Id_Usuario` (`Id_Usuario`,`Id_Producto`,`Id_Usuario_Entrega`),
+  ADD KEY `Id_Producto` (`Id_Producto`),
+  ADD KEY `Id_Usuario_Entrega` (`Id_Usuario_Entrega`);
 
 --
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `modificaciones productos`
+--
+ALTER TABLE `modificaciones productos`
+  ADD CONSTRAINT `modificaciones productos_ibfk_1` FOREIGN KEY (`Id_Producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `modificaciones productos_ibfk_2` FOREIGN KEY (`Id_Usuario`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mod_usuarios`
+--
+ALTER TABLE `mod_usuarios`
+  ADD CONSTRAINT `mod_usuarios_ibfk_1` FOREIGN KEY (`Id_Usuario`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `mod_usuarios_ibfk_2` FOREIGN KEY (`Id_Usuario_Mod`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`Func_Agrega`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `solicitudes`
+--
+ALTER TABLE `solicitudes`
+  ADD CONSTRAINT `solicitudes_ibfk_1` FOREIGN KEY (`Id_Producto`) REFERENCES `productos` (`Id_Producto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `solicitudes_ibfk_2` FOREIGN KEY (`Id_Usuario`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `solicitudes_ibfk_3` FOREIGN KEY (`Id_Usuario_Entrega`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

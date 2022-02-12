@@ -10,13 +10,13 @@
                     <th>Tipo</th>
                     <th>Ubicación</th>
                     <th>Observacion</th>
-                    <th>Agregado Por</th>
+                    <th>Agregado/Modificado Por</th>
                     <th>Agregado hace</th>
                 </tr>
             </thead>
             <tbody>
-                {{#each data}}
-                {{#if mayor data}}
+                {{#each result}}
+                {{#if status}}
                 <tr style="background-color:#FF0000">
                     <td>{{N_Producto}}</td>
                     <td>{{Stock_Actual}}</td>
@@ -27,10 +27,11 @@
                     <td>{{Observacion}}</td>
                     <td>{{Func_Agrega}}</td>
                     <td>{{timeago F_Agregado}}</td>
-                    <td><a href="/Modificar/{{Id_Producto}}">Modificar</a></td>
-                    <Td><a href="/Eliminar/{{Id_Producto}}">Eliminar</a></Td>
+                    <td><a href="Inventario/Modificar/{{Id_Producto}}" class="btn btn-primary">Modificar</a></td>
+                    <Td><a href="Inventario/Eliminar/{{Id_Producto}}" class="btn btn-danger">Eliminar</a></Td>
+                    
                 </tr>
-                {{/if}}
+                {{else}}
                 <tr>
                     <td>{{N_Producto}}</td>
                     <td>{{Stock_Actual}}</td>
@@ -41,9 +42,11 @@
                     <td>{{Observacion}}</td>
                     <td>{{Func_Agrega}}</td>
                     <td>{{timeago F_Agregado}}</td>
-                    <td><a href="/Modificar/{{Id_Producto}}">Modificar</a></td>
-                    <Td><a href="/Eliminar/{{Id_Producto}}">Eliminar</a></Td>
+                    <td><a href="Inventario/Modificar/{{Id_Producto}}" class="btn btn-primary" >Modificar</a></td>
+                    <Td><a href="Inventario/Eliminar/{{Id_Producto}}" class="btn btn-danger">Eliminar</a></Td>
                 </tr>
+                {{/if}}
+                
                 {{/each}}
             </tbody>
         </table>

@@ -6,7 +6,20 @@ const pool = require("../database");
 //Links Pag Principal Inventario
 router.get('/', async(req, res) => {
     const data = await pool.query('SELECT * FROM productos');
-    res.render("Inventario/Listado", { data });
+    const result = []
+    for (let key in data) {
+
+        if (data[key].Stock_Actual <= data[key].Stock_Minimo) {
+            result.push(Object.assign({}, data[key], {
+                status: true
+            }))
+        } else {
+            result.push(Object.assign({}, data[key], {
+                status: false
+            }))
+        };
+    };
+    res.render("Inventario/Listado", { result });
 });
 
 
@@ -16,7 +29,7 @@ router.get("/Agregar", (req, res) => {
     res.render("Inventario/Agregar");
 });
 router.post("/Agregar", async(req, res) => {
-    const { NombreP, StockA, StockMin, Institucion, Tipo, Ubicacion, Observacion } = req.body;
+    const { N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
     const NuevoProducto = {
         Id_Producto: makeid(5),
         N_Producto: NombreP,
@@ -26,19 +39,44 @@ router.post("/Agregar", async(req, res) => {
         Tipo,
         Ubicacion,
         Observacion,
-        Func_Agrega: ""
+        Func_Agrega: "Admin"
 
     };
     console.log(NuevoProducto);
     await pool.query('INSERT INTO `productos` set ?', [NuevoProducto]);
-    res.render("Inventario/Agregar");
+    res.redirect("/Inventario");
 });
 
 module.exports = router;
 
 //Links Modificacion
-router.post("/Modificar", (req, res) => {
-    console.log(req.body);
+router.get("/Modificar/:Id_Producto", async(req, res) => {
+    const { Id_Producto } = req.params;
+    const data = await pool.query('SELECT * FROM productos WHERE Id_Producto= ?', [Id_Producto]);
+
+    console.log(data[0]);
+    res.render("Inventario/Modificar", { data: data[0] });
+
+    //req.render("/Modificar");
+
+});
+router.post("/Modificar/:Id_Producto", async(req, res) => {
+    const { Id_Producto, N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
+    const NuevoProducto = {
+
+        Id_Producto,
+        N_Producto,
+        Stock_Actual,
+        Stock_Minimo,
+        Institucion,
+        Tipo,
+        Ubicacion,
+        Observacion
+
+    };
+    await pool.query('UPDATE productos set ? WHERE Id_Producto = ?', [NuevoProducto, NuevoProducto.Id_Producto]);
+
+    res.redirect("/Inventario");
 });
 
 //Creacion de ID's Productos

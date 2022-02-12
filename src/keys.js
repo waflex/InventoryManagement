@@ -1,7 +1,7 @@
 module.exports = {
 
     database: {
-        host: '192.168.13.2',
+        host: 'localhost',
         user: 'Admin',
         password: 'Admin',
         database: 'inventario',

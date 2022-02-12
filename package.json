@@ -6,7 +6,6 @@
     "engines": {
         "node": "8"
     },
-
     "scripts": {
         "dev": "nodemon src",
         "test": "testcon.js"

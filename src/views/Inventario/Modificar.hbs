@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="text-center">
-                Agregar Producto
+                Modificar Producto
             </h3>
-            <form role="form" action="/Inventario/Agregar" method="post">
+            <form role="form" action="/Inventario/Modificar/{{data.Id_Producto}}" method="post">
                 <div class="row">
                     <div class="col-md-3">
                     </div>
@@ -15,26 +15,26 @@
                             <label for="Text">
                                 Nombre Producto
                             </label>
-                            <input class="form-control" type="text" name="N_Producto"
+                            <input class="form-control" type="text" name="N_Producto" value="{{data.N_Producto}}"
                                 placeholder="Nombre Producto"></input>
                             <br>
                         </div>
                         <div class="form-group ">
                             <label for="">Cantidad Producto</label>
 
-                            <input class="form-control" type="text" name="Stock_Actual" 
+                            <input class="form-control" type="text" name="Stock_Actual" value="{{data.Stock_Actual}}"
                                 placeholder="Ingrese Cantidad"></input>
                             <br>
                         </div>
                         <div class="form-group"><label for="Text">
                                 Stock Minimo
                             </label>
-                            <input class="form-control" type="text" name="Stock_Minimo"
+                            <input class="form-control" type="text" name="Stock_Minimo" value="{{data.Stock_Minimo}}"
                                 placeholder="Cantidad Minima para el Producto"></input>
                         </div>
                         <br>
                         <div class="form-group">
-                            <input hidden class="form-control " type="text" name="Id_Producto"></input>
+                            <input hidden class="form-control " type="text" name="Id_Producto" value="{{data.Id_Producto}}"></input>
                         </div>
                         <br>
                     </div>
@@ -42,7 +42,7 @@
                         <div class="form-group">
                             Institucion a la que pertenece
                             <select class="custom-select form-control" id="Institucion" name="Institucion">
-                                <option selected>Seleccione Institucion</option>
+                                <option selected>{{data.Institucion}}</option>
                                 <option value="IPVC">IPVC</option>
                                 <option value="UB">UB</option>
                                 <option value="UAC">UAC</option>
@@ -52,7 +52,7 @@
                         <div class="form-group">
                             Categoria del Producto
                             <select class="custom-select form-control" name="Tipo" id="Seccion">
-                                <option selected>Seleccione Categoria</option>
+                                <option selected>{{data.Tipo}}</option>
                                 <option value="Oficina">Oficina</option>
                                 <option value="Limpieza">Limpieza</option>
                                 <option value="Impresoras">Impresoras</option>
@@ -66,7 +66,7 @@
                         <div class="form-group">
                             Ubicacion
                             <select class="custom-select form-control" name="Ubicacion" id="Ubicacion">
-                                <option selected>Donde esta guardado</option>
+                                <option selected>{{data.Ubicacion}}</option>
                                 <option value="Bodega 1">Bodega 1</option>
                                 <option value="Bodega 2">Bodega 2</option>
                                 <option value="Bodega 3">Bodega 3</option>
@@ -78,7 +78,7 @@
                         <div class="form-group">
                             Observaciones
                             <textarea class="form-control" name="Observacion" rows="5" maxlength="250"
-                                placeholder="Observaciones"></textarea>
+                                placeholder="Observaciones">{{data.Observacion}}</textarea>
                         </div>
                         <br>
                         
