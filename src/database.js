@@ -23,6 +23,9 @@ pool.getConnection((err, connection) => {
     return;
 });
 
+
+//Recordar Al iniciar Sesion UPDATE `users` SET `Lst_conn`=CURRENT_TIMESTAMP WHERE `ID`="Admin";
+
 //Promisify Pool Querys Con esto puedo hacer consultas y permitirme esperar la respuesta, para un mejor manejo de conexiones
 pool.query = promisify(pool.query);
 
