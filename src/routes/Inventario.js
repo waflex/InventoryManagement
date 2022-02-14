@@ -9,9 +9,13 @@ router.get('/', async(req, res) => {
     const result = [];
     for (let key in data) {
 
-        if (data[key].Stock_Actual <= data[key].Stock_Minimo) {
+        if (data[key].Stock_Actual < data[key].Stock_Minimo) {
             result.push(Object.assign({}, data[key], {
                 status: true
+            }));
+        } else if (data[key].Stock_Actual == data[key].Stock_Minimo || data[key].Stock_Actual == data[key].Stock_Minimo + 1) {
+            result.push(Object.assign({}, data[key], {
+                StatusEq: true
             }));
         } else {
             result.push(Object.assign({}, data[key], {
@@ -55,9 +59,6 @@ router.get("/Modificar/:Id_Producto", async(req, res) => {
     const data = await pool.query('SELECT * FROM productos WHERE Id_Producto= ?', [Id_Producto]);
 
     res.render("Inventario/Modificar", { data: data[0] });
-
-    //req.render("/Modificar");
-
 });
 router.post("/Modificar/:Id_Producto", async(req, res) => {
     const { Id_Producto, N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
@@ -74,7 +75,15 @@ router.post("/Modificar/:Id_Producto", async(req, res) => {
 
     };
     await pool.query('UPDATE productos set ? WHERE Id_Producto = ?', [NuevoProducto, NuevoProducto.Id_Producto]);
+    req.flash('success', 'Producto Modificado Correctamente');
+    res.redirect("/Inventario");
+});
 
+//Eliminacion de Productos
+router.get("/Eliminar/:Id_Producto", async(req, res) => {
+    const { Id_Producto } = req.params;
+    const data = await pool.query('DELETE FROM productos WHERE Id_Producto= ?', [Id_Producto]);
+    req.flash('success', 'Producto Eliminado Correctamente');
     res.redirect("/Inventario");
 });
 
