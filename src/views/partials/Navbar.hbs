@@ -1,21 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #3647E8;">
-    <div class=" text-uppercase">
-        <a style="color: aqua" class="navbar-brand" href="#"><img src="img/IPVC2021_vertical blanco.png" style="max-width:5%" class="d-block w-100" alt="Responsive image">Sistema Inventario IPVC</a>
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3647E8;">
+    <div class="container text-uppercase">
+        <a class="navbar-brand" href="/">
+            <img src="../../img/IPVC2021_vertical blanco.png" alt="" width="60" height="35"
+                class="d-inline-block align-text-top">
+            Sistema Inventario IPVC La Serena
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse ml-auto" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a style="color: aqua" class="nav-link" href="../../Inventario">Lista Inventario <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a style="color: aqua" class="nav-link" href="../../Inventario/Agregar">Agregar Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a style="color: aqua" class="nav-link" href="#">Perfil</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Menus
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink"style="background-color: #3647E8;">
+                        <li><a class="dropdown-item" href="../../Inventario">Listado</a></li>
+                        <li><a class="dropdown-item" href="../../Inventario/Agregar">Agregar Productos</a></li>
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

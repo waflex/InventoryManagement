@@ -1,16 +1,16 @@
 {{#if success}}
-  <div class="container p-4">
-    <div class="row">
-      <div class="col-md-4 mx-auto">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-          <ion-icon type="button" class="close mx-auto" data-dismiss="alert" aria-label="Close" name="close-outline">
-          </ion-icon>
-          <h4>
-            {{success}}
-          </h4> <strong>Base de Datos</strong> Actualizada
-        </div>
+<div class="container p-4">
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <h4><svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+            <use xlink:href="#check-circle-fill" />
+          </svg>
+          {{success}}
+        </h4> <strong>Base de Datos</strong> Actualizada
       </div>
     </div>
   </div>
-  </div>
-  {{/if}}
+</div>
+{{/if}}

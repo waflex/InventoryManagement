@@ -10,53 +10,19 @@ $(document).ready(function() {
             $("#myModal").modal("show");
         });
 
-    /*var rut;
-
-    $('#rut').focusout(function() {
-        var div1, div2, div3, div4;
-        rut = $(this).val();
-
-        if (rut.length == 9) {
-            div1 = rut.slice(0, 2);
-            div2 = rut.slice(2, 5);
-            div3 = rut.slice(5, 8);
-            div4 = rut.slice(8, 9);
-
-            rut = $(this).val(div1 + "." + div2 + "." + div3 + "-" + div4);
+    $('input#rut').focusout(function() {
+        let rut = $('input#rut').val();
+        let RutValidador = new rutValidador(rut)
+        if (RutValidador.esValido) {
+            //$('input#rut').addClass('valid-feedback')
+            $('input#rut').append("<div class='" + "valid-feedback" + "'>Looks good!</div>")
+        } else {
+            $('input#rut').append('<div class="invalid-feedback">Please choose a username.</div>')
         }
-
-        if (rut.length == 8) {
-            div1 = rut.slice(0, 1);
-            div2 = rut.slice(1, 4);
-            div3 = rut.slice(4, 7);
-            div4 = rut.slice(7, 8);
-
-            rut = $(this).val(div1 + "." + div2 + "." + div3 + "-" + div4);
+        if (rut = "") {
+            $('input#rut').removeClass('is-invalid');
+            $('input#rut').removeClass('valid-feedback');
         }
-    });*/
-
-    /*$("input#Usuario")
-        .rut({ formatOn: 'keyup', validateOn: 'keyup' })
-
-    .on('rutInvalido', function() {
-            $(this).parents(".form-group").addClass("error");
-        })
-        .on('rutValido', function() {
-            $(this).parents(".form-group").removeClass("is-valid");
-        });*/
-    try {
-        $("input#Usuario")
-            .rut({ validateOn: 'keyup change' })
-            .on('rutInvalido', function() {
-                // $(this).parents(".control-group").addClass("error");
-                //alert("El rut " + $(this).val() + " es inválido");
-            })
-            .on('rutValido', function() {
-                //$(this).parents(".control-group").removeClass("is-valid");
-                alert("El rut " + rut + "-" + dv + " es correcto");
-            });
-    } catch (error) {
-        console.log(error);
-    }
+    });
 
 });
