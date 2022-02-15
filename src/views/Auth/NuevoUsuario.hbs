@@ -1,0 +1,71 @@
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-center">
+                Añadir Usuario
+            </h3>
+            <form role="form" action="/Auth/NuevoUsuario" method="post">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3">
+
+                        <div class="form-group ">
+
+                            <label for="Text">
+                               Rut Usuario
+                            </label>
+                            <input id="rut" class="rut form-control" maxlength="12" size="12" type="text" name="ID" placeholder="11.111.111-1" style="color:#ca2e1a">
+                            <br>
+                        </div>
+                        <div class="form-group ">
+                            <label for="">Nombre Usuario</label>
+
+                            <input class="form-control" type="text" name="Nom_usu" 
+                                placeholder="Nombre Apellido"></input>
+                            <br>
+                        </div>
+                        <div class="form-group"><label for="Text">
+                                Contraseña
+                            </label>
+                            <input class="form-control" type="password" name="Cont_usu"
+                                placeholder="Contraseña"></input>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-3"> {{!NO BORRAR}}
+                        <div class="form-group">
+                            Institucion a la que pertenece
+                            <select class="custom-select form-control" id="institucion" name="Institucion">
+                                <option selected>Seleccione Institucion</option>
+                                <option value="IPVC">IPVC</option>
+                                <option value="UB">UB</option>
+                                <option value="UAC">UAC</option>
+                            </select>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            Cargo del usuario
+                            <select class="custom-select form-control cargo" name="Cargo" id="Cargo">
+                                <option selected>Seleccione Cargo</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Auxiliar">Auxiliar</option>
+                                <option value="Funcionario">Funcionario</option>
+                            </select>
+                            <br>
+                        </div>
+                        <br><br>
+                        <br><br>
+                        <div class="form-group">
+                            <button class="btn-habilitado form-control btn btn-success btn-block" disabled>
+                                guardar
+                            </button>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

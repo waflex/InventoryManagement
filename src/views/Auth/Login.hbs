@@ -1,41 +1,30 @@
-<div class="container">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card text-Centered">
-                    <div class="card-header mx-auto">
-                        <div class="mx-auto">
-                            <h3>
-                                Inicio de Sesión
-                            </h3>
-                        </div>
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <div class="card text-center">
+                <div class="card-header text-white bg-dark"><h3>Inicio Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/login" method="post">
+                    <div class="form-group">
+                        <h5>Rut Usuario</h5>
+                        <input id="rut" class="rut form-control" maxlength="12" size="12" type="text" name="Usuario" placeholder="11.111.111-1" style="color:#ca2e1a">                    
                     </div>
-                    <div class="card-body">
-                        <form id="validacion-live" action="/Login" role="form" class="row g-3 needs-validation">
-                            <div class="form-horizontal form-group control-group mx-auto">
-                                <label for="rut" class="form-label">
-                                    Ingrese Usuario
-                                </label>
-                                <input id="rut" type="text" class="form-control" placeholder="11.111.111-k" required>
-
-                            </div>
-                            <br>
-                            <div class="form-group">
-
-                                <label for="Contraseña" required>
-                                    Contraseña
-                                </label>
-                                <input type="password" class="form-control" id="Contraseña" placeholder="********">
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary ms-auto">
-                                Submit
-                            </button>
-                        </form>
+                    <br>    
+                    <div class="form-group">
+                        <h5>Contraseña</h5>
+                        <input class="form-control" type="password" name="contraseña" placeholder="Contraseña">
                     </div>
+                    <br>
+                    <div class="form-group">
+                        <button class="btn-habilitado btn btn-info btn-block" disabled>Iniciar Sesión</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+
+
+<script src="js/log.js"></script>
