@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const pool = require("../database");
+const { isLoggedIn } = require('../lib/auth')
 
 //Links Pag Principal Inventario
-router.get('/', async(req, res) => {
+router.get('/', isLoggedIn, async(req, res) => {
     const data = await pool.query('SELECT * FROM productos');
     const result = [];
     for (let key in data) {
@@ -29,7 +30,7 @@ router.get('/', async(req, res) => {
 
 
 //Links Y Procedimientos Agregar
-router.get("/Agregar", (req, res) => {
+router.get("/Agregar", isLoggedIn, (req, res) => {
     res.render("Inventario/Agregar");
 });
 router.post("/Agregar", async(req, res) => {
@@ -54,7 +55,7 @@ router.post("/Agregar", async(req, res) => {
 module.exports = router;
 
 //Links Modificacion
-router.get("/Modificar/:Id_Producto", async(req, res) => {
+router.get("/Modificar/:Id_Producto", isLoggedIn, async(req, res) => {
     const { Id_Producto } = req.params;
     const data = await pool.query('SELECT * FROM productos WHERE Id_Producto= ?', [Id_Producto]);
 
@@ -80,7 +81,7 @@ router.post("/Modificar/:Id_Producto", async(req, res) => {
 });
 
 //Eliminacion de Productos
-router.get("/Eliminar/:Id_Producto", async(req, res) => {
+router.get("/Eliminar/:Id_Producto", isLoggedIn, async(req, res) => {
     const { Id_Producto } = req.params;
     const data = await pool.query('DELETE FROM productos WHERE Id_Producto= ?', [Id_Producto]);
     req.flash('success', 'Producto Eliminado Correctamente');

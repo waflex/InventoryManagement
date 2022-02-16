@@ -12,9 +12,10 @@ passport.use('local.login', new LocalStrategy({
         const filas = await pool.query('SELECT * FROM users WHERE ID= ?', username);
         if (filas.length > 0) {
             const user = filas[0];
+            console.log(user);
             const ContraValida = await helpers.deryptPassword(password, user.Cont_usu);
             if (ContraValida) {
-                await pool.query('UPDATE `users` SET `Lst_conn`=CURRENT_TIMESTAMP WHERE `ID`=', username);
+                await pool.query('UPDATE users SET Lst_conn=CURRENT_TIMESTAMP WHERE ID=?', username);
                 done(null, user, req.flash('Logged', 'Bienvenido ' + user.Nom_usu));
             } else {
                 done(null, false, req.flash('NotMatch', 'Contraseña Incorrecta'));

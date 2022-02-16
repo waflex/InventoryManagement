@@ -3,6 +3,7 @@ const router = express.Router();
 
 const pool = require("../database");
 const passport = require('passport');
+const { isLoggedIn } = require('../lib/auth')
 
 
 ///INICIO SESION
@@ -24,7 +25,7 @@ router.post("/Login", (req, res, next) => {
 
 //CREAR USUARIOS
 
-router.get("/NuevoUsuario", (req, res) => {
+router.get("/NuevoUsuario", isLoggedIn, (req, res) => {
     res.render("Auth/NuevoUsuario");
 });
 
@@ -50,9 +51,17 @@ router.post('/Auth/NuevoUsuario', passport.authenticate('local.signup', {
 
 
 //REDIRECCIONAMIENTO USUARIO INICIADO
-router.get("/Perfil", (req, res) => {
+router.get("/Perfil", isLoggedIn, (req, res) => {
     res.render('Perfil');
 
 });
 
+
+
+
+//CERRAR SESION MIRA LA WEA FACIL, MANSO WEBEO PA INICIAR SESION Y PA CERRAR?
+router.get('/logout', isLoggedIn, (req, res) => {
+    req.logOut();
+    res.redirect('/');
+});
 module.exports = router;

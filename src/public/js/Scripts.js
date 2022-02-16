@@ -8,7 +8,9 @@ $(document).ready(function() {
 
         $("#myModal").modal("show");
     });
-
+    $(".Modal-Dismiss").click(function() {
+        $("#myModal").modal("dismiss");
+    });
     $("#institucion").click(function() {
         let inst = $("#institucion").prop('selectedIndex');
         let cargo = $("#Cargo").prop('selectedIndex');
