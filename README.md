@@ -1,2 +1,2 @@
 # InventoryManagement
-full of failures
+Le faltan unas herramientas pero ya funciona como corresponde
