@@ -12,11 +12,21 @@ passport.use('local.login', new LocalStrategy({
         const filas = await pool.query('SELECT * FROM users WHERE ID= ?', username);
         if (filas.length > 0) {
             const user = filas[0];
-            console.log(user);
             const ContraValida = await helpers.deryptPassword(password, user.Cont_usu);
             if (ContraValida) {
+                if (user.Cargo == "Administrador") {
+                    req.session.level2 = true;
+                    req.session.level3 = true;
+                    console.log("passport");
+                    console.log(req.session.level3);
+                } else if (user.Cargo == "Auxiliar") {
+                    req.session.level2 = true;
+                    req.session.level3 = false;
+                }
+
                 await pool.query('UPDATE users SET Lst_conn=CURRENT_TIMESTAMP WHERE ID=?', username);
                 done(null, user, req.flash('Logged', 'Bienvenido ' + user.Nom_usu));
+                //Permisos
             } else {
                 done(null, false, req.flash('NotMatch', 'Contraseña Incorrecta'));
             }
@@ -47,7 +57,6 @@ passport.use('local.signup', new LocalStrategy({
         Estado: 'Habilitado'
     };
     Usuario.Cont_usu = await helpers.encryptPassword(password);
-    console.log(Usuario);
     const res = await pool.query('INSERT INTO users SET ?', [Usuario]);
     return done(null, Usuario);
 

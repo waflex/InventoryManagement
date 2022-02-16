@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+    //MODAL BORRAR
     $(".Borrar_P").click(function() {
         var id_p = $(this).attr("rel");
         var N_P = $(this).attr("Id");
@@ -11,6 +13,7 @@ $(document).ready(function() {
     $(".Modal-Dismiss").click(function() {
         $("#myModal").modal("dismiss");
     });
+    //Controlador para Agregar Usuarios y cosas
     $("#institucion").click(function() {
         let inst = $("#institucion").prop('selectedIndex');
         let cargo = $("#Cargo").prop('selectedIndex');
@@ -31,7 +34,7 @@ $(document).ready(function() {
     });
 });
 
-
+//verificar rut y si ves esto, la otra parte esta en queryrut por si te interesa
 $(document).on("keyup", ".rut", () => {
     let rut = $(".rut").val();
     let inst = $("#institucion").prop('selectedIndex');

@@ -57,6 +57,9 @@ app.use((req, res, next) => {
     app.locals.NotMatch = req.flash('NotMatch');
     app.locals.NoUser = req.flash('NoUser');
     app.locals.usuarioActivo = req.user;
+    app.locals.level3 = req.session.level3;
+    app.locals.level2 = req.session.level2;
+    app.locals.productos = req.session.productos;
     next();
 });
 
@@ -65,10 +68,15 @@ app.use((req, res, next) => {
 app.use(require("./routes"));
 app.use(require("./routes/autentication"));
 app.use('/Inventario', require("./routes/Inventario"));
+app.use('/Solicitudes', require('./routes/Solicitudes'));
 
 
 //PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+
 //Inicio Server 
 app.listen(app.get("port"), () => {
     console.log("Server on Port", app.get("port"));

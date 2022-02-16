@@ -1,0 +1,81 @@
+
+<script src="../../js/bootstrap-input-spinner.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-8">
+                    <div class="container p-4">
+                        <div class="table table-responsive">
+                            <table class="table table-hover table-condensed table-stripped " style="border-color: #000000; table{border-radius: 10px;}">
+                                <thead class="thead-dark">
+                                    <tr style="background-color:#3647E8; color: aqua;">
+                                        <th class="text-center my-auto"><p class="text-center mx-auto">Nombre Producto</p></th>
+                                        <th class="text-center my-auto"><p class="text-center mx-auto">Stock Actual</p></th>
+                                        <th class="text-center my-auto"><p class="text-center mx-auto">Stock Minimo</p></th>
+                                        <th class="text-center my-auto"><p class="text-center mx-auto">Tipo</p></th>
+                                        <th class="text-center my-auto"><p class="text-center mx-auto">Observacion</p></th>
+                                        <th colspan="2">
+                                            <p class="text-center mx-auto">Agregar a Solicitud</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each result}}
+                                    {{#if status}} {{!Si Valor es menor Rojo}}
+                                    <tr class="bg-danger">
+                                        <td>{{N_Producto}}</td>
+                                        <td>{{Stock_Actual}}</td>
+                                        <td>{{Stock_Minimo}}</td>
+                                        <td>{{Tipo}}</td>
+                                        <td>{{Observacion}}</td>
+                                        <form action="/Solicitudes/AgregarSolicitud/{{Id_Producto}}" method="post">
+                                        <td><input type="number" class="form-control text-center" name="Cantidad" value="1" min="1" max="{{Stock_Actual}}"/>
+                                        </td>
+                                        <Td><button type="submit" class="btn btn-primary text-wrap">Agregar a Solicitud</button></Td>
+                                        </form>
+                                    </tr>
+                                    {{else if StatusEq}} {{! Si Valor es igual fondo = Amarillo}}
+                                    <tr class="bg-warning">
+                                        <td>{{N_Producto}}</td>
+                                        <td>{{Stock_Actual}}</td>
+                                        <td>{{Stock_Minimo}}</td>
+                                        <td>{{Tipo}}</td>
+                                        <td>{{Observacion}}</td>
+                                        <form action="/Solicitudes/AgregarSolicitud/{{Id_Producto}}" method="post">
+                                        <td><input type="number" class="form-control text-center" name="Cantidad" value="1" min="1" max="{{Stock_Actual}}"/>
+                                        </td>
+                                        <Td><button type="submit" class="btn btn-primary text-wrap">Agregar a Solicitud</button></Td>
+                                        </form>
+                                    </tr>
+                                    {{else}}
+                                    <tr style="color: black;">
+                                        <td>{{N_Producto}}</td>
+                                        <td>{{Stock_Actual}}</td>
+                                        <td>{{Stock_Minimo}}</td>
+                                        <td>{{Tipo}}</td>
+                                        <td>{{Observacion}}</td>
+                                        <form action="/Solicitudes/AgregarSolicitud/{{Id_Producto}}" method="post">
+                                        <td><input type="number" class="form-control text-center" name="Cantidad" value="1" min="1" max="{{Stock_Actual}}"/>
+                                        </td>
+                                        <Td><button type="submit" class="btn btn-primary text-wrap">Agregar a Solicitud</button></Td>
+                                        </form>
+                                        
+                                    </tr>
+                                    {{/if}}
+
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

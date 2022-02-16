@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3647E8;">
     <div class="container text-uppercase">
-        <a class="navbar-brand" href="/">
-            <img src="../../img/IPVC2021_vertical blanco.png" alt="" width="60" height="35"
+        <a class="navbar-brand mt-2" href="/">
+            <img src="../../img/IPVC2021_vertical blanco.png" alt="LOGO" width="60" height="35"
                 class="d-inline-block align-text-top">
             Sistema Inventario IPVC La Serena
         </a>
@@ -11,7 +11,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+                
                 {{#if usuarioActivo}}
+                <a class="nav-link" href="../../Solicitudes/">Crear/Agregar Solicitud</a>
+                {{#if productos}}
+                    <a class="nav-link" href="../../Solicitudes/Estado">Ver Solicitud</a>
+                {{/if}}
+                {{#if level2}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -21,8 +27,12 @@
                         style="background-color: #3647E8;">
                         <li><a class="dropdown-item" href="../../Inventario">Listado</a></li>
                         <li><a class="dropdown-item" href="../../Inventario/Agregar">Agregar Productos</a></li>
+                        {{#if level3}}
+                        <li><a class="dropdown-item" href="../../NuevoUsuario">Agregar Usuario</a></li>
+                        {{/if}}
                     </ul>
                 </li>
+                {{/if}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,11 +45,9 @@
                     </ul>
                 </li>
                 {{else}}
-                <li><a class="dropdown-item Text-White" href="/login" style="color: aliceblue; background-color: #3647E8;">Iniciar Sesión</a></li>
+                <li><a class="nav-link Text-White" href="/login"
+                        style="color: aliceblue; background-color: #3647E8;">Iniciar Sesión</a></li>
                 {{/if}}
-                
-                    
-                
             </ul>
         </div>
     </div>

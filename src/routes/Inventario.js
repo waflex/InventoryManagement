@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const pool = require("../database");
-const { isLoggedIn } = require('../lib/auth')
+
+const pool = require('../database');
+const { isLoggedIn } = require('../lib/auth');
 
 //Links Pag Principal Inventario
 router.get('/', isLoggedIn, async(req, res) => {
     const data = await pool.query('SELECT * FROM productos');
     const result = [];
     for (let key in data) {
-
         if (data[key].Stock_Actual < data[key].Stock_Minimo) {
             result.push(Object.assign({}, data[key], {
                 status: true
@@ -18,13 +18,24 @@ router.get('/', isLoggedIn, async(req, res) => {
             result.push(Object.assign({}, data[key], {
                 StatusEq: true
             }));
+
+
         } else {
             result.push(Object.assign({}, data[key], {
                 status: false
             }));
+
+
         }
+
+        //Cambio Id por Nombre
+        const nameuser = await pool.query('SELECT * FROM users WHERE ID= ?', [data[key].Func_Agrega]);
+        result[key].Func_Agrega = nameuser[0].Nom_usu;
+
     }
+    console.log(result);
     res.render("Inventario/Listado", { result });
+
 });
 
 
@@ -44,7 +55,7 @@ router.post("/Agregar", async(req, res) => {
         Tipo,
         Ubicacion,
         Observacion,
-        Func_Agrega: "Admin"
+        Func_Agrega: req.user.ID
 
     };
     await pool.query('INSERT INTO `productos` set ?', [NuevoProducto]);
@@ -52,7 +63,7 @@ router.post("/Agregar", async(req, res) => {
     res.redirect("/Inventario");
 });
 
-module.exports = router;
+
 
 //Links Modificacion
 router.get("/Modificar/:Id_Producto", isLoggedIn, async(req, res) => {
@@ -99,3 +110,6 @@ function makeid(length) {
     }
     return result;
 }
+
+
+module.exports = router;
