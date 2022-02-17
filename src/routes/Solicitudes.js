@@ -5,7 +5,7 @@ const pool = require("../database");
 const { isLoggedIn } = require("../lib/auth");
 const carro = require("../lib/Carrito");
 
-router.get("/", async(req, res) => {
+router.get("/", isLoggedIn, async(req, res) => {
     const data = await pool.query("SELECT * FROM productos");
     const result = [];
     for (let key in data) {
@@ -35,13 +35,11 @@ router.get("/", async(req, res) => {
     res.render("Solicitudes/Listas", { result });
 });
 
-router.post("Solicitudes/Listas", (req, res) => {
+router.post("Solicitudes/Listas", isLoggedIn, (req, res) => {
     res.render("/Listas");
 });
 
-router.post("/AgregarSolicitud/:Id_Producto", async(req, res) => {
-    /*console.log(req.body);
-      console.log(req.params.Id_Producto);*/
+router.post("/AgregarSolicitud/:Id_Producto", isLoggedIn, async(req, res) => {
     var cant = parseInt(req.body.Cantidad);
     const { Id_Producto } = req.params;
     var soli = new carro(req.session.cart ? req.session.cart : {});
@@ -49,16 +47,38 @@ router.post("/AgregarSolicitud/:Id_Producto", async(req, res) => {
         Id_Producto,
     ]);
     prod = prod[0];
+    id = prod.Id_Producto;
     soli.agregar(prod, prod.Id_Producto, cant);
     req.session.cart = soli; ////IMPORTANTE ALMACENAR LOS DATOS EN LA SESION, SINO ESTARAS 3 HORAS BUSCANDO XQ CHUCHA NO FUNCIONA
+    req.session.productos = true;
+    console.log(req.session.cart);
     res.redirect("../");
 });
 
-router.get("/Estado", (req, res) => {
+router.get("/Eliminar1/:Id_Producto", isLoggedIn, (req, res) => {
+    const { Id_Producto } = req.params;
+    var soli = new carro(req.session.cart ? req.session.cart : {});
+    soli.recudir1(Id_Producto);
+    req.session.cart = soli;
+    res.redirect('../../Solicitudes/Estado');
+});
+router.get("/EliminarProducto/:Id_Producto", isLoggedIn, (req, res) => {
+    const { Id_Producto } = req.params;
+    var soli = new carro(req.session.cart ? req.session.cart : {});
+    soli.eliminarProd(Id_Producto);
+    req.session.cart = soli;
+    res.redirect('../../Solicitudes/Estado');
+});
+
+
+
+router.get("/Estado", isLoggedIn, (req, res) => {
     if (!req.session.cart) {
-        return res.render("/Estado", { productos: null });
+        return res.render("Solicitudes/Estado");
     } else {
-        return res.render("/Estado", { productos: true });
+        var cart = new carro(req.session.cart);
+        console.log(req.session.cart);
+        return res.render('Solicitudes/Estado', { elementos: cart.generarArray(), cantTotal: cart.CantTotal });
     }
 });
 

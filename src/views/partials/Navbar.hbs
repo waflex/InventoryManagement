@@ -15,7 +15,7 @@
                 {{#if usuarioActivo}}
                 <a class="nav-link" href="../../Solicitudes/">Crear/Agregar Solicitud</a>
                 {{#if productos}}
-                    <a class="nav-link" href="../../Solicitudes/Estado">Ver Solicitud</a>
+                    <a class="nav-link" href="../../Solicitudes/Estado">Ver Solicitud<span class="badge bg-info text-dark">{{session.cart.CantTotal}}</span></a>
                 {{/if}}
                 {{#if level2}}
                 <li class="nav-item dropdown">

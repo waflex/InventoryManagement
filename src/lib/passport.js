@@ -17,8 +17,6 @@ passport.use('local.login', new LocalStrategy({
                 if (user.Cargo == "Administrador") {
                     req.session.level2 = true;
                     req.session.level3 = true;
-                    console.log("passport");
-                    console.log(req.session.level3);
                 } else if (user.Cargo == "Auxiliar") {
                     req.session.level2 = true;
                     req.session.level3 = false;

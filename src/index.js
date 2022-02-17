@@ -69,6 +69,7 @@ app.use(require("./routes"));
 app.use(require("./routes/autentication"));
 app.use('/Inventario', require("./routes/Inventario"));
 app.use('/Solicitudes', require('./routes/Solicitudes'));
+app.use(require('./routes/Pruebas'));
 
 
 //PUBLIC
