@@ -5,34 +5,52 @@
                 <div class="card-header">
                     <h3>Productos a Solicitar</h3>
                 </div>
-                {{!#if Productos}}
-                <div class="card-body">
-                    <ul class="list-group">
-                        {{#each elementos}}
+                {{#if productos}}
+                <form action="EnviarSolicitud" method="post">
+                    <div class="card-body">
+                        <ul class="list-group">
+                            {{#each elementos}}
                             <li class="list-group-item">
-                            <span class="badge bg-secondary">{{this.qty}}</span>
-                            <strong>{{this.items.N_Producto}}</strong>
-                            <div class="btn-group">
-                                <button class="btn btn-primary btn-xs dropdown-toggle" type="button" data-bs-toggle="dropdown">Action <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../../Solicitudes/Eliminar1/{{this.items.Id_Producto}}">Quitar 1</a></li>
-                                    <li><a class="dropdown-item" href="../../Solicitudes/EliminarProducto/{{this.items.Id_Producto}}">Eliminar Todo</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        {{/each}}
-                        
-                    </ul>
-                    <br>
-                    <button class="btn btn-success"> Solicitar Productos</button>
+                                <div class="row">
+                                    <div class="col-md-2 my-auto">
+                                        <span class="badge bg-info">{{this.qty}}</span>
+                                    </div>
+                                    <div class="col-md-6 my-auto">
+                                        <strong class="strong">{{this.items.N_Producto}}</strong>
+                                        <label for="strong">{{this.items.Tipo}}</label>
+                                    </div>
+                                    <div class="col-md-4 my-auto">
+                                        <div class="btn-group">
+                                            <button class="btn btn-primary btn-xs dropdown-toggle" type="button"
+                                                data-bs-toggle="dropdown">Action <span class="caret"></span></button>
+                                            <ul class="dropdown-menu">
+                                                <li><a class="dropdown-item"
+                                                        href="../../Solicitudes/Eliminar1/{{this.items.Id_Producto}}">Quitar
+                                                        1</a></li>
+                                                <li><a class="dropdown-item"
+                                                        href="../../Solicitudes/EliminarProducto/{{this.items.Id_Producto}}">Eliminar
+                                                        Todo</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+
+
+                            </li>
+                            {{/each}}
+
+                        </ul>
+                        <br>
+                        <button type="submit" class="btn btn-success"> Solicitar Productos</button>
                     </div>
-                </div>
-                {{!else}}
-                <div class="card-body">
-                    <h3>No se han agregado productos</h3>
-                </div>
-                {{!/if}}
+                </form>
             </div>
+            {{else}}
+            <div class="card-body">
+                <h3>No se han agregado productos</h3>
+            </div>
+            {{/if}}
         </div>
     </div>
+</div>
 </div>

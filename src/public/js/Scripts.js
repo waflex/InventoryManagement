@@ -56,4 +56,8 @@ $(document).on("keyup", ".rut", () => {
     if (rut == "") {
         $(".rut").attr("style", "");
     }
+    //Evitar escribir en input number
+    $("[type='number']").keypress(function(evt) {
+        evt.preventDefault();
+    });
 });

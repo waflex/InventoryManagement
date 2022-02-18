@@ -35,6 +35,8 @@ router.post("/testing123", async(req, res) => {
 
     res.redirect('testing123');
 });*/
+
+//JSON a Object
 router.post("/parse", async(req, res) => {
     var carrin = new carro(req.session.cart ? req.session.cart : {});
     carrin.Empty();
@@ -42,4 +44,12 @@ router.post("/parse", async(req, res) => {
     res.redirect('testing123');
 });
 
+router.post("/checkbox", (req, res) => {
+    console.log(req.body);
+    res.redirect('testing123');
+});
+
 module.exports = router;
+
+
+///SELECT domain FROM mytable WHERE domain LIKE '%domain.com%'; para filtros escritos

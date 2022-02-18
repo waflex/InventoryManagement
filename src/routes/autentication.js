@@ -61,6 +61,9 @@ router.get("/Perfil", isLoggedIn, (req, res) => {
 
 //CERRAR SESION MIRA LA WEA FACIL, MANSO WEBEO PA INICIAR SESION Y PA CERRAR?
 router.get('/logout', isLoggedIn, (req, res) => {
+    req.session.level3 = false;
+    req.session.level2 = false;
+    req.session.cart = null;
     req.logOut();
     res.redirect('/');
 });

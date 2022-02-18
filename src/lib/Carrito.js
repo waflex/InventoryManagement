@@ -1,3 +1,5 @@
+const session = require("express-session");
+
 module.exports = function Carrito(OldData) {
     this.items = OldData.items || {}; // items = Objeto a agregar, OldData = Objetos existentes en el carro
     this.CantTotal = OldData.CantTotal || 0; //Cant = ya se sabe, es la cantidad que viene duh
@@ -22,6 +24,7 @@ module.exports = function Carrito(OldData) {
         if (this.items[id].qty <= 0) {
             delete this.items[id];
         }
+
         //storedItem.price -= this.items[id].price                  ||Esto para reducir precio
         //this.PrecioTotal -= this.items[id].price                  ||Esto para reducir el precio total
         /*this.CantTotal--; Esto para carritos de compras, para control total de productos,
@@ -32,7 +35,6 @@ module.exports = function Carrito(OldData) {
     this.eliminarProd = function(id) {
         this.CantTotal -= this.items[id].qty;
         delete this.items[id];
-
 
         //storedItem.price -= this.items[id].price                  ||Esto para reducir precio
         //this.PrecioTotal -= this.items[id].price                  ||Esto para reducir el precio total
@@ -50,11 +52,4 @@ module.exports = function Carrito(OldData) {
         return arr;
     };
 
-    this.Empty = function() {
-        if (this.items.length == 0) {
-            console.log("es 0");
-        } else {
-            console.log(this.items.length);
-        }
-    };
 };

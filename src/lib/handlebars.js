@@ -5,10 +5,6 @@ helpers.timeago = (timestamp) => {
     return timeago(timestamp);
 };
 
-helpers.ConfirmarD = (Id_prod) => {
-    alert("Hola Mundo el id es: " + Id_prod);
-};
-
 module.exports = helpers;
 
 //Timeago to español

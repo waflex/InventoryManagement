@@ -5,18 +5,33 @@
                 class="d-inline-block align-text-top">
             Sistema Inventario IPVC La Serena
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <ul class="navbar-nav ms-auto">
-                
+
                 {{#if usuarioActivo}}
-                <a class="nav-link" href="../../Solicitudes/">Crear/Agregar Solicitud</a>
-                {{#if productos}}
-                    <a class="nav-link" href="../../Solicitudes/Estado">Ver Solicitud<span class="badge bg-info text-dark">{{session.cart.CantTotal}}</span></a>
-                {{/if}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Solicitudes
+                        {{#if productos}}<span class="badge bg-info text-dark">{{cantTotal}}</span>
+                        {{/if}}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink"
+                        style="background-color: #3647E8;">
+                        <li><a class="dropdown-item" href="../../Solicitudes/">Crear/Agregar Solicitud</a></li>
+                        {{#if productos}}
+                        <li><a class="dropdown-item" href="../../Solicitudes/Estado">Ver Solicitud</a></li>
+                        {{/if}}
+                        <li><a class="dropdown-item" href="../../Solicitudes/MisSolicitudes">Mis Solicitudes</a></li>                
+                        <li><a class="dropdown-item" href="../../Solicitudes/SolicitudesGenerales">Solicitudes Generales</a></li>                
+                    </ul>
+                </li>
+
+
                 {{#if level2}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"

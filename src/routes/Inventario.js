@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const id = require('../lib/Ids');
 
 
 const pool = require('../database');
@@ -33,7 +34,6 @@ router.get('/', isLoggedIn, async(req, res) => {
         result[key].Func_Agrega = nameuser[0].Nom_usu;
 
     }
-    console.log(result);
     res.render("Inventario/Listado", { result });
 
 });
@@ -47,7 +47,7 @@ router.get("/Agregar", isLoggedIn, (req, res) => {
 router.post("/Agregar", async(req, res) => {
     const { N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
     const NuevoProducto = {
-        Id_Producto: makeid(5),
+        Id_Producto: id.makeid(5),
         N_Producto,
         Stock_Actual,
         Stock_Minimo,
@@ -98,18 +98,5 @@ router.get("/Eliminar/:Id_Producto", isLoggedIn, async(req, res) => {
     req.flash('success', 'Producto Eliminado Correctamente');
     res.redirect("/Inventario");
 });
-
-//Creacion de ID's Productos
-function makeid(length) {
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
-    for (var i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() *
-            charactersLength));
-    }
-    return result;
-}
-
 
 module.exports = router;

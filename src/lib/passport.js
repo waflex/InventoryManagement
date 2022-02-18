@@ -20,6 +20,9 @@ passport.use('local.login', new LocalStrategy({
                 } else if (user.Cargo == "Auxiliar") {
                     req.session.level2 = true;
                     req.session.level3 = false;
+                } else if (user.Cargo == "Funcionario") {
+                    req.session.level2 = false;
+                    req.session.level3 = false;
                 }
 
                 await pool.query('UPDATE users SET Lst_conn=CURRENT_TIMESTAMP WHERE ID=?', username);

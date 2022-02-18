@@ -4,11 +4,21 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
+                    <div class="form-group">
+                            Institucion a la que pertenece
+                            <select class="custom-select form-control" id="institucion" name="Institucion">
+                                <option selected>Seleccione Institucion</option>
+                                <option value="IPVC">IPVC</option>
+                                <option value="UB">UB</option>
+                                <option value="UAC">UAC</option>
+                            </select>
+                            <br>
+                        </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-11">
                     <div class="container p-4">
-                        <div class="table table-responsive">
+                        <div class="table">
                             <table class="table table-hover table-condensed table-stripped table-bordered" style="border-color: #000000; table{border-radius: 10px;}">
                                 <thead class="thead-dark">
                                     <tr style="background-color:#3647E8; color: aqua;">
@@ -37,7 +47,7 @@
                                         <td>{{Institucion}}</td>
                                         <td>{{Tipo}}</td>
                                         <td>{{Ubicacion}}</td>
-                                        <td>{{Observacion}}</td>
+                                        <td maxlength="12" size="12">{{Observacion}}</td>
                                         <td>{{Func_Agrega}}</td>
                                         <td>{{timeago F_Agregado}}</td>
                                         <td><a href="Inventario/Modificar/{{Id_Producto}}"
@@ -56,7 +66,7 @@
                                         <td>{{Institucion}}</td>
                                         <td>{{Tipo}}</td>
                                         <td>{{Ubicacion}}</td>
-                                        <td>{{Observacion}}</td>
+                                        <td maxlength="12" size="12">{{Observacion}}</td>
                                         <td>{{Func_Agrega}}</td>
                                         <td>{{timeago F_Agregado}}</td>
                                         <td><a href="Inventario/Modificar/{{Id_Producto}}"
@@ -74,7 +84,7 @@
                                         <td>{{Institucion}}</td>
                                         <td>{{Tipo}}</td>
                                         <td>{{Ubicacion}}</td>
-                                        <td>{{Observacion}}</td>
+                                        <td maxlength="12" size="12">{{Observacion}}</td>
                                         <td>{{Func_Agrega}}</td>
                                         <td>{{timeago F_Agregado}}</td>
                                         <td><a href="Inventario/Modificar/{{Id_Producto}}"

@@ -56,6 +56,7 @@ app.use((req, res, next) => {
     app.locals.Logged = req.flash('Logged');
     app.locals.NotMatch = req.flash('NotMatch');
     app.locals.NoUser = req.flash('NoUser');
+    app.locals.OutStock = req.flash('OutStock');
     app.locals.usuarioActivo = req.user;
     app.locals.level3 = req.session.level3;
     app.locals.level2 = req.session.level2;

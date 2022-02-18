@@ -1,9 +1,10 @@
 const express = require('express');
+const { isEmpty } = require('../lib/auth');
 const router = express.Router();
 
 //Rutas
 
-router.get('/', (req, res) => {
+router.get('/', isEmpty, (req, res) => {
     res.render('index');
 });
 
