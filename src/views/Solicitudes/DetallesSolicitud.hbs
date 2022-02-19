@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <h3 class="Text-center">Detalles Solicitud</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12 border border-2 rounded">
+                    <br>
+                    <div class="row">
+                        
+                        <div class="col">
+                            <h4>Solicitado por</h4>
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <h4>Estado</h4>
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <h4>Fecha</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row mt-1">
+                        <div class="col">{{solicitudes.Id_Usuario}}</div>
+                        <div class="col"> {{{solicitudes.Estado}}} </div>
+                        <div class="col">{{solicitudes.F_Solicitud}}</div>
+                    </div>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">
+                            <h5>Productos Solicitados</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col">Nombre producto</div>
+                        <div class="col-md-3"></div>
+                        <div class="col">Cantidad Solicitada</div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <form action="" method="post">
+                            {{#each solicitudes.PSolicitados}}
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col">{{this.items.N_Producto}}</div>
+                                <div class="col-md-5"></div>
+                                <div class="col">{{this.qty}}</div>
+                            </div>
+                            {{/each}}
+                            <div class="row mt-4">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6 mb-4">
+                                    <button class="btn btn-outline-success" type="submit">Aprobar Solicitud</button>
+                                    <br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  

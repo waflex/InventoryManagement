@@ -27,24 +27,41 @@
                         <div class="card-header">
                             <p>
                             <div class="row">
-                                <div class="col-md-8">
-                                    <div class="row justify-content-md-center">
-                                        <div class="col">
-                                            <h4>ID Solicitud</h4>{{}}
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col">
+                                                <h4>Solicitado por</h4>
+                                            </div>
+                                            <div class="col">
+                                                <h4>Creado </h4>
+                                            </div>
+                                            <div class="col">
+                                                <h4>Estado</h4>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <h4>Creado </h4>{{timeago F_Solicitud}}
-                                        </div>
-                                        <div class="col">
-                                            <h4>Estado</h4>{{Estado}}
+                                    </div>
+                                    <div class="col-md-4"><a class="btn btn-primary mx-auto" data-bs-toggle="collapse"
+                                            href="#collapseExample{{Id_Solicitud}}" role="button" aria-expanded="false"
+                                            aria-controls="collapseExample">
+                                            Ver Datos Solicitud
+                                        </a></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col">
+                                                {{Id_Usuario}}
+                                            </div>
+                                            <div class="col">
+                                                {{timeago F_Solicitud}}
+                                            </div>
+                                            <div class="col">
+                                                {{{Estado}}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4"><a class="btn btn-primary mx-auto" data-bs-toggle="collapse"
-                                        href="#collapseExample{{Id_Solicitud}}" role="button" aria-expanded="false"
-                                        aria-controls="collapseExample">
-                                        Ver Datos Solicitud
-                                    </a></div>
                             </div>
                             </p>
                         </div>
@@ -66,7 +83,11 @@
                                         {{/each}}
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4 mt-4">
-                                            <button class="btn btn-info" type="submit">Entregar Solicitud</button>
+                                            <a href="../../Solicitudes/DetallesSolicitud/{{Id_Solicitud}}"
+                                                class="btn btn-outline-info">Detalles Solicitud 
+                                                <iclass="bi bi-info-circle" fill="currentColor">
+                                                </i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -75,7 +96,6 @@
                     </div>
                     <br>
                     {{/each}}
-
                 </div>
             </div>
         </div>
