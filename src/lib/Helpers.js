@@ -22,7 +22,7 @@ helpers.deryptPassword = async(contraseña, ContraseñaBD) => {
 };
 
 helpers.OutStock = async(req, res, next) => {
-    if (!req.session.cart) { next(); } else {
+    if (!req.session.cart || req.session.cart == null) { return next(); } else {
         const { Id_Producto } = req.params;
         var cant = parseInt(req.body.Cantidad);
         var prod = await pool.query("SELECT * FROM productos WHERE Id_Producto= ?", [
@@ -35,13 +35,12 @@ helpers.OutStock = async(req, res, next) => {
         for (let key in elementos) {
             if (Id_Producto == elementos[key].items.Id_Producto) {
                 if (elementos[key].qty + cant > prod.Stock_Actual) {
-
                     req.flash('OutStock', 'Producto no se pudo agregar, sobrepasa el stock actual');
-                    res.redirect('../../Solicitudes/');
+                    return res.redirect('../../Solicitudes/');
                 }
             }
         }
     }
-    next();
+    return next();
 };
 module.exports = helpers;

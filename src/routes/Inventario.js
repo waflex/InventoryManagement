@@ -38,12 +38,11 @@ router.get('/', isLoggedIn, async(req, res) => {
 
 });
 
-
-
 //Links Y Procedimientos Agregar
 router.get("/Agregar", isLoggedIn, (req, res) => {
     res.render("Inventario/Agregar");
 });
+
 router.post("/Agregar", async(req, res) => {
     const { N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
     const NuevoProducto = {
