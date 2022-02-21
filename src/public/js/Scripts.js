@@ -65,3 +65,8 @@ $(document).on("keyup", ".rut", () => {
         evt.preventDefault();
     });
 });
+
+$(document).ready(function() {
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+});

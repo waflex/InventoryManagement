@@ -44,7 +44,7 @@ app.use(esession({
 }));
 app.use(flash());
 app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -61,6 +61,7 @@ app.use((req, res, next) => {
     app.locals.level3 = req.session.level3;
     app.locals.level2 = req.session.level2;
     app.locals.productos = req.session.productos;
+    app.locals.CantidadTotal = req.session.CantidadTotal;
     next();
 });
 

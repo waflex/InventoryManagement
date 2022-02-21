@@ -15,11 +15,9 @@ passport.use('local.login', new LocalStrategy({
             const ContraValida = await helpers.deryptPassword(password, user.Cont_usu);
             if (ContraValida) {
                 if (user.Cargo == "Administrador") {
-                    req.session.level2 = true;
                     req.session.level3 = true;
                 } else if (user.Cargo == "Auxiliar") {
                     req.session.level2 = true;
-                    req.session.level3 = false;
                 } else if (user.Cargo == "Funcionario") {
                     req.session.level2 = false;
                     req.session.level3 = false;

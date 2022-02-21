@@ -2,24 +2,73 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col">
+            <div class="col mt-2 ms-auto">
+            <h3 class="mx-auto">Inventario General</h3>
+            </div>
             <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
-                        Institucion a la que pertenece
-                        <select class="custom-select form-control" id="institucion" name="Institucion">
-                            <option selected>Seleccione Institucion</option>
-                            <option value="IPVC">IPVC</option>
-                            <option value="UB">UB</option>
-                            <option value="UAC">UAC</option>
-                        </select>
-                        <br>
+                <div class="col-md-2">
+                    <div class="container">
+                        <aside>
+                            <div class="row mt-5">
+                                <div class="col container-fluid">
+                                    <div class="card mt-2">
+                                        <form action="/Inventario/filtrado" method="post">
+                                            <div class="card card-header">
+                                                <a class="btn btn-primary btn-block" data-bs-toggle="collapse"
+                                                    href="#collapseExample" role="button" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    Filtros<i class="bi bi-funnel-fill"></i>
+                                                </a>
+                                            </div>
+                                            <div class="collapse" id="collapseExample">
+                                                <div class="card card-body">
+                                                    <span class="ms-2">Buscar Por Nombre:</span>
+                                                    <input class="form-control ms-2 mb-2" style="width: 90%;"
+                                                        type="text" name="N_Producto" id="">
+                                                    <div class="form-group">
+                                                        <span>Filtrar Institucion:</span>
+                                                        <select class="custom-select form-control" id="Institucion"
+                                                            name="Institucion" required>
+                                                            <option selected>Seleccione Institucion</option>
+                                                            <option value="IPVC">IPVC</option>
+                                                            <option value="UB">UB</option>
+                                                            <option value="UAC">UAC</option>
+                                                        </select>
+                                                    </div>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <span>Filtrar Categoria</span>
+                                                        <select class="custom-select form-control" name="Tipo"
+                                                            id="Seccion" required>
+                                                            <option selected>Seleccione Categoria</option>
+                                                            <option value="Oficina">Oficina</option>
+                                                            <option value="Limpieza">Limpieza</option>
+                                                            <option value="Impresoras">Impresoras</option>
+                                                            <option value="Toners">Toners</option>
+                                                            <option value="Productos Electricos">Productos Electricos
+                                                            </option>
+                                                            <option value="Computadoras">Computadoras</option>
+                                                            <option value="Perifericos">Perifericos</option>
+                                                        </select>
+                                                        <br>
+                                                    </div>
+                                                    <button class="form-control btn btn-success mx-2 mb-2"
+                                                        style="width: 93%;" type="submit">Buscar</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
                     </div>
                 </div>
-                <div class="col-md-11">
-                    <div class="container p-4">
+                <div class="col-md-10">
+                    <div class="container mt-4">
                         <div class="table">
-                            <table class="table table-hover table-condensed table-stripped table-bordered"
+                            <table id="dtBasicExample"
+                                class="table table-hover table-condensed table-stripped table-bordered table-responsive"
                                 style="border-color: #000000; table{border-radius: 10px;}">
                                 <thead class="thead-dark">
                                     <tr style="background-color:#3647E8; color: rgb(163, 233, 227);">

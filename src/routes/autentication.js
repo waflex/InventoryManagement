@@ -11,6 +11,8 @@ const { isLoggedIn } = require('../lib/auth');
 router.get("/Login", (req, res) => {
     res.render("Auth/Login");
 });
+
+
 router.post("/Login", (req, res, next) => {
     passport.authenticate('local.login', {
         successRedirect: '/Perfil',
@@ -18,9 +20,6 @@ router.post("/Login", (req, res, next) => {
         failureFlash: true
     })(req, res, next);
 });
-
-
-
 
 
 //CREAR USUARIOS
@@ -57,6 +56,18 @@ router.get("/Perfil", isLoggedIn, (req, res) => {
 });
 
 
+//CAMBIAR CONTRASEÑA
+router.get("/CambiarContrasena", isLoggedIn, (req, res) => {
+    res.render('Auth/CambiarContrasena');
+
+});
+
+router.post("/CambiarContraseña", isLoggedIn, (req, res) => {
+    res.render('Perfil');
+
+});
+
+
 
 
 //CERRAR SESION MIRA LA WEA FACIL, MANSO WEBEO PA INICIAR SESION Y PA CERRAR?
@@ -64,6 +75,8 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.session.level3 = false;
     req.session.level2 = false;
     req.session.cart = null;
+    req.session.CantidadTotal = null;
+    req.session.productos = null;
     req.logOut();
     res.redirect('/');
 });

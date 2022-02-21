@@ -1,18 +1,46 @@
 <div class="container p-4">
     <div class="row">
-        <div class="col-md-4 mx-auto">
+        <div class="col mx-auto">
             <div class="card text-center">
                 <div class="card-body">
-                    <h3> Bienvenido {{usuarioActivo.Nom_usu}} </h3>
-                    <h4>Tus datos son: </h4>
+                    <h3> Perfil Usuario</h3>
+                    <h4>Informacion Personal: </h4>
                     <br>
-                    <p>Rut: {{usuarioActivo.ID}}</p>
-                    <br>
-                    <p>Cargo: {{usuarioActivo.Cargo}}</p>
-                    <br>
-                    <p>Institucion: {{usuarioActivo.Institucion}}</p>
-                    <br>
-                    <p>Tu Ultima Conexion fue: {{timeago usuarioActivo.Lst_conn}} </p>
+                    <div class="row">
+                        <div class="col ms-4">
+                            <div class="row">
+                                <div class="col"><p class="text-start">Rut: </p></div>
+                                <div class="col">{{usuarioActivo.ID}}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><p class="text-start">Nombre Usuario: </p></div>
+                                <div class="col">{{usuarioActivo.Nom_usu}}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><p class="text-start">Cargo: </p></div>
+                                <div class="col">{{usuarioActivo.Cargo}}</div>
+                            </div>
+                            <br>                            
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col"><p class="text-start">Institucion: </p></div>
+                                <div class="col">{{usuarioActivo.Institucion}}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><p class="text-start">Tu Ultima Conexion fue: </p></div>
+                                <div class="col">{{timeago usuarioActivo.Lst_conn}}</div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col"><a href="../../CambiarContrasena" class="btn btn-outline-info">Cambiar Contraseña</a></div>
+                                <div class="col"><a href="../../Solicitudes/MisSolicitudes" class="btn btn-outline-success">Ver mis Solicitudes</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

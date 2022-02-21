@@ -9,7 +9,7 @@
         <div class="col-md-8">
             <div class="row">
                 {{#if status2}}
-                <div class="col-md-12 border border-1 border-danger rounded"></div>
+                <div class="col-md-12 border border-1 border-danger rounded">
                 {{else}}
                 <div class="col-md-12 border border-2 rounded">
                 {{/if}}
@@ -57,7 +57,7 @@
                                 <div class="col"><label>{{this.items.N_Producto}}</label></div>
                                 <div class="col-md-5"><input type="hidden" name="IDp"
                                         value="{{this.items.Id_Producto}}" /></div>
-                                {{#if status}}
+                                {{#if ../status}}
                                 <div class="col"><input style="width: 20%;" class="text-center" type="text"
                                         name="Cantidad" value="{{this.qty}}"></div>
                                 {{else}}
