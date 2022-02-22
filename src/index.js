@@ -44,7 +44,7 @@ app.use(esession({
 }));
 app.use(flash());
 app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 

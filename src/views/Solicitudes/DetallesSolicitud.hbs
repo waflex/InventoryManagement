@@ -10,111 +10,145 @@
             <div class="row">
                 {{#if status2}}
                 <div class="col-md-12 border border-1 border-danger rounded">
-                {{else}}
-                <div class="col-md-12 border border-2 rounded">
-                {{/if}}
-                    <br>
-                    <div class="row">
-                        <form action="solicitudes/AprobarSolicitud/" method="post"></form>
-                        <div class="col">
-                            <h4>Solicitado por</h4>
-                            <hr>
-                        </div>
-                        <div class="col">
-                            <h4>Estado</h4>
-                            <hr>
-                        </div>
-                        <div class="col">
-                            <h4>Fecha</h4>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="row mt-1">
-                        <div class="col">{{solicitudes.Id_Usuario}}</div>
-                        <div class="col"> {{{solicitudes.Estado}}} </div>
-                        <div class="col">{{solicitudes.F_Solicitud}}</div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col">
-                            <h5>Productos Solicitados</h5>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-1"></div>
-                        <div class="col">Nombre producto</div>
-                        <div class="col-md-3"></div>
-                        <div class="col">Cantidad Solicitada</div>
-                        <div class="col">Stock Actual</div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <form action="" method="post">
-                            {{#each solicitudes.PSolicitados}}
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col"><label>{{this.items.N_Producto}}</label></div>
-                                <div class="col-md-5"><input type="hidden" name="IDp"
-                                        value="{{this.items.Id_Producto}}" /></div>
-                                {{#if ../status}}
-                                <div class="col"><input style="width: 20%;" class="text-center" type="text"
-                                        name="Cantidad" value="{{this.qty}}"></div>
-                                {{else}}
-                                <div class="col"><input style="width: 20%;" class="text-center" type="text"
-                                        name="Cantidad" value="{{this.qty}}" disabled></div>
-                                {{/if}}
-                                <div class="col">{{this.items.Stock_Actual}}</div>
+                    {{else}}
+                    <div class="col-md-12 border border-2 rounded">
+                        {{/if}}
+                        <br>
+                        <div class="row">
+                            <form action="solicitudes/AprobarSolicitud/" method="post"></form>
+                            <div class="col">
+                                <h4>Solicitado por</h4>
+                                <hr>
                             </div>
-                            {{/each}}
-                            {{#if status}}
-                            <div class="row mt-4">
-                                <div class="col-md-2"></div>
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here"
-                                            name="Observacion" id="floatingTextarea2"
-                                            style="height: 100px;overflow:auto;resize:none"></textarea>
-                                        <label for="floatingTextarea2">Observación en Solicitud</label>
-                                    </div>
+                            <div class="col">
+                                <h4>Estado</h4>
+                                <hr>
+                            </div>
+                            <div class="col">
+                                <h4>Fecha</h4>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
+                            <div class="col">{{solicitudes.Id_Usuario}}</div>
+                            <div class="col"> {{{solicitudes.Estado}}} </div>
+                            <div class="col">{{solicitudes.F_Solicitud}}</div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col">
+                                <h5>Productos Solicitados</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col">Nombre producto</div>
+                            <div class="col-md-3"></div>
+                            <div class="col">Cantidad Solicitada</div>
+                            <div class="col">Stock Actual</div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <form action="" method="post">
+                                {{#each solicitudes.PSolicitados}}
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col"><label>{{this.items.N_Producto}}</label></div>
+                                    <div class="col-md-5"><input type="hidden" name="IDp"
+                                            value="{{this.items.Id_Producto}}" /></div>
+                                    {{#if ../status}}
+                                    <div class="col"><input style="width: 20%;" class="text-center" type="text"
+                                            name="Cantidad" value="{{this.qty}}"></div>
+                                    {{else}}
+                                    <div class="col"><input style="width: 20%;" class="text-center" type="text"
+                                            name="Cantidad" value="{{this.qty}}" disabled></div>
+                                    {{/if}}
+                                    <div class="col">{{this.items.Stock_Actual}}</div>
                                 </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                            {{else}}
-                            <div class="row mt-4">
-                                <div class="col-md-2"></div>
-                                <div class="col">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here"
-                                            name="Observacion" id="floatingTextarea2"
-                                            style="height: 100px;overflow:auto;resize:none"
-                                            disabled>{{solicitudes.Observacion}}</textarea>
-                                        <label for="floatingTextarea2">Observación en Solicitud</label>
+                                {{/each}}
+                                {{#if solicitudes.PrEntregados}}                           
+                                <div class="row">
+                                    <div class="row mt-4">
+                                        <div class="col-md-1"></div>
+                                        <div class="col">
+                                            <h5>Productos Entregados</h5>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                            {{/if}}
-
-                            <div class="row mt-4">
-                                <div class="col-md-1"></div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-1"></div>
+                                        <div class="col">Nombre producto</div>
+                                        <div class="col-md-3"></div>
+                                        <div class="col">Cantidad Entregada</div>
+                                        <div class="col">Stock al Entregar</div>
+                                    </div>
+                                    <br>
+                                    <div class="row mt-3  mb-3">
+                                        <form action="" method="post">
+                                            {{#each solicitudes.PrEntregados}}
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col"><label>{{this.items.N_Producto}}</label></div>
+                                                <div class="col-md-5"><input type="hidden" name="IDp"
+                                                        value="{{this.items.Id_Producto}}" /></div>
+                                                
+                                                <div class="col"><input style="width: 20%;" class="text-center"
+                                                        type="text" name="Cantidad" value="{{this.qty}}" disabled></div>
+                                                
+                                                <div class="col">{{this.items.Stock_Actual}}</div>
+                                            </div>
+                                            {{/each}}
+                                    </div>
+                                    {{/if}}
                                 {{#if status}}
-                                <div class="col-md-7 mb-4">
-                                    <button class="btn btn-outline-success" type="submit">Aprobar Solicitud</button>
-                                    <br>
+                                <div class="row mt-4">
+                                    <div class="col-md-2"></div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                name="Observacion" id="floatingTextarea2"
+                                                style="height: 100px;overflow:auto;resize:none"></textarea>
+                                            <label for="floatingTextarea2">Observación en Solicitud</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
                                 </div>
-                                <div class="col mb-4">
-                                    <a class="btn btn-outline-danger"
-                                        href="../../solicitudes/RechazarSolicitud/{{solicitudes.Id_Solicitud}}">Rechazar
-                                        Solicitud</a>
-                                    <br>
+                                {{else}}
+                                <div class="row mt-4">
+                                    <div class="col-md-2"></div>
+                                    <div class="col">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                name="Observacion" id="floatingTextarea2"
+                                                style="height: 100px;overflow:auto;resize:none"
+                                                disabled>{{solicitudes.Observacion}}</textarea>
+                                            <label for="floatingTextarea2">Observación en Solicitud</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
                                 </div>
                                 {{/if}}
-                            </div>
-                        </form>
+
+                                    <div class="row mt-4">
+                                        <div class="col-md-1"></div>
+                                        {{#if status}}
+                                        <div class="col-md-7 mb-4">
+                                            <button class="btn btn-outline-success" type="submit">Aprobar
+                                                Solicitud</button>
+                                            <br>
+                                        </div>
+                                        <div class="col mb-4">
+                                            <a class="btn btn-outline-danger"
+                                                href="../../solicitudes/RechazarSolicitud/{{solicitudes.Id_Solicitud}}">Rechazar
+                                                Solicitud</a>
+                                            <br>
+                                        </div>
+                                        {{/if}}
+                                    </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

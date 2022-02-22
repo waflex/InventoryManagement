@@ -4,6 +4,7 @@ const router = express.Router();
 const pool = require("../database");
 const passport = require('passport');
 const { isLoggedIn } = require('../lib/auth');
+const helpers = require("../lib/Helpers");
 
 
 ///INICIO SESION
@@ -58,13 +59,14 @@ router.get("/Perfil", isLoggedIn, (req, res) => {
 
 //CAMBIAR CONTRASEÑA
 router.get("/CambiarContrasena", isLoggedIn, (req, res) => {
+
     res.render('Auth/CambiarContrasena');
 
 });
 
-router.post("/CambiarContraseña", isLoggedIn, (req, res) => {
-    res.render('Perfil');
-
+router.post('/Auth/CambiarContrasena', isLoggedIn, helpers.Compare, async(req, res) => {
+    req.flash("success", "Su contraseña ha sido actualizada");
+    res.redirect('../../Perfil');
 });
 
 
@@ -79,5 +81,10 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.session.productos = null;
     req.logOut();
     res.redirect('/');
+});
+
+
+router.get("/ControlUsuarios", (req, res) => {
+    res.render("Auth/ControlUsuarios");
 });
 module.exports = router;

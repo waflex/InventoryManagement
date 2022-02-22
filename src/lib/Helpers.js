@@ -43,4 +43,30 @@ helpers.OutStock = async(req, res, next) => {
     }
     return next();
 };
+
+helpers.Compare = async(req, res, next) => {
+    var data = await pool.query('SELECT * FROM users WHERE ID = ?', req.user.ID);
+    data[0].Cont_usu = await helpers.deryptPassword(req.body.OldPassword, data[0].Cont_usu);
+
+    if (!data[0].Cont_usu) {
+        req.flash('NotMatch', 'La contraseña actual no es la correcta');
+        res.redirect("../../CambiarContrasena");
+    }
+    if (!req.body.Newpassword || !req.body.Copypassword) {
+        req.flash('NotMatch', 'Debe llenar los campos');
+        res.redirect("../../CambiarContrasena");
+    } else {
+        if (req.body.Newpassword == req.body.Copypassword) {
+            req.body.Newpassword = await helpers.encryptPassword(req.body.Newpassword);
+            console.log(req.body.Newpassword);
+            await pool.query('UPDATE users set Cont_usu = ? WHERE ID = ?', [req.body.Newpassword, req.user.ID]);
+            return next();
+        } else {
+            req.flash('NotMatch', 'Las contraseñas no coinciden');
+            res.redirect("../../CambiarContrasena");
+        }
+    }
+
+
+};
 module.exports = helpers;

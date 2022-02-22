@@ -13,7 +13,7 @@
             <ul class="navbar-nav ms-auto">
 
                 {{#if usuarioActivo}}
-                {{!Pregunta por Nivel 3}}
+                {{!Pregunta por Administrador}}
                 {{#if level3}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
@@ -44,6 +44,7 @@
                         <li><a class="dropdown-item" href="../../Inventario">Listado</a></li>
                         <li><a class="dropdown-item" href="../../Inventario/Agregar">Agregar Productos</a></li>
                         <li><a class="dropdown-item" href="../../NuevoUsuario">Agregar Usuario</a></li>
+                        <li><a class="dropdown-item" href="../../ControlUsuarios">Control de Usuarios</a></li>
 
                     </ul>
                 </li>
@@ -59,7 +60,7 @@
                     </ul>
                 </li>
 
-{{!Pregunta por Nivel 2}}
+                {{!Pregunta por Auxiliar}}
                 {{else if level2}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
