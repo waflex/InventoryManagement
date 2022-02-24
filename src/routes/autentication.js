@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
-
+var paginate = require('handlebars-paginate');
 const pool = require("../database");
 const passport = require('passport');
 const { isLoggedIn } = require('../lib/auth');
 const helpers = require("../lib/Helpers");
+// const Handlebars = require("handlebars");
+// var paginate = require('handlebars-paginate');
+// Handlebars.registerHelper('paginate', paginate);
+
+
 
 
 ///INICIO SESION
@@ -84,7 +89,30 @@ router.get('/logout', isLoggedIn, (req, res) => {
 });
 
 
-router.get("/ControlUsuarios", (req, res) => {
-    res.render("Auth/ControlUsuarios");
+router.get("/ControlUsuarios", async(req, res) => {
+    var maxPages = await pool.query("SELECT * FROM users");
+    const perPage = parseInt(maxPages.length / 10) + 1;
+    const page = req.query.p;
+    var min;
+    var max;
+    if (req.query.p > 1) {
+        min = (((req.query.p * 10) - 10) + 1);
+        max = req.query.p * 10;
+    } else {
+        min = ((req.query.p * 10) - 10);
+        max = req.query.p * 10;
+    }
+    var sql = "SELECT * FROM users LIMIT " + min + "," + max;
+    console.log(sql);
+    var data = await pool.query(sql);
+    res.render("Auth/ControlUsuarios", {
+        pagination: {
+            page: req.query.p,
+            pageCount: perPage
+
+        },
+        data
+    });
 });
+
 module.exports = router;

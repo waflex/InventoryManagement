@@ -1,5 +1,6 @@
 const express = require('express');
-const { isEmpty } = require('../lib/auth');
+const { redirect } = require('express/lib/response');
+const { isEmpty, isLoggedIn } = require('../lib/auth');
 const router = express.Router();
 
 //Rutas

@@ -1,9 +1,50 @@
 <div class="container">
     <div class="row justify-content-md-cente">
         <div class="col col-lg-2"></div>
-        <div class="col-md-auto">
+        <div class="col-md-auto mt-5">
             <h2 class="mx-auto">Control de Usuarios</h2>
         </div>
-
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <form action="../Auth/ControlUsuarios/there?qs1=you&qs2=tube" method="post">
+                <input type="text" name="texto" value="Hola">
+                <button type="submit" class="btn btn-success"> boton</button>
+            </form>
+        </div>
+        <div class="col-md-10">
+            <div class="pagination pagination-centered">
+                <nav aria-label="Page navigation example" class="ms-auto">
+                    <ul class="pagination">
+                        {{#paginate pagination type="first"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}">Inicio</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="previous"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}"><i class="bi bi-arrow-left"></i></a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="next"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}"><i class="bi bi-arrow-right"></i></a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="last"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}">Ultima</a></li>
+                        {{/paginate}}
+                    </ul>
+                </nav>
+            </div>
+            {{#each data}}
+            <div class="card">
+                <div class="card-header">
+                    <h3>Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <p>{{ID}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
     </div>
 </div>
