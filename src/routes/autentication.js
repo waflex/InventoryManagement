@@ -5,11 +5,9 @@ const pool = require("../database");
 const passport = require('passport');
 const { isLoggedIn } = require('../lib/auth');
 const helpers = require("../lib/Helpers");
-// const Handlebars = require("handlebars");
-// var paginate = require('handlebars-paginate');
-// Handlebars.registerHelper('paginate', paginate);
-
-
+const Handlebars = require("handlebars");
+var paginate = require('handlebars-paginate');
+Handlebars.registerHelper('paginate', paginate);
 
 
 ///INICIO SESION
