@@ -21,12 +21,12 @@
                                 href="?p={{n}}">Inicio</a></li>
                         {{/paginate}}
                         {{#paginate pagination type="previous"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
-                                href="?p={{n}}"><i class="bi bi-arrow-left"></i></a></li>
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
+                                    class="bi bi-arrow-left"></i></a></li>
                         {{/paginate}}
                         {{#paginate pagination type="next"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
-                                href="?p={{n}}"><i class="bi bi-arrow-right"></i></a></li>
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
+                                    class="bi bi-arrow-right"></i></a></li>
                         {{/paginate}}
                         {{#paginate pagination type="last"}}
                         <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
@@ -36,13 +36,41 @@
                 </nav>
             </div>
             {{#each data}}
-            <div class="card mt-2">
+            <div class="card mt-4">
                 <div class="card-header">
                     <h3>Nombre Usuario: {{Nom_usu}}</h3>
                 </div>
                 <div class="card-body">
-                    <p>ID: {{ID}}</p>
+                    <div class="row">
+                        <div class="col">
+                            <p>RUT: {{ID}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Estado: {{Estado}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Cargo: {{Cargo}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Institucion: {{Institucion}}</p>
+                        </div>
+                        <div class="col">
+                            <p>Ultima Conexion: {{timeago Lst_conn}}</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-5"></div>
+                        <div class="col">
+                            <a class="btn btn-info ms-auto" href="">Cambiar Contraseña <i
+                                    class="bi bi-pencil-square" style="color: white;"></i></a>
+                            <a class="btn btn-info ms-auto" href="">Modificar Usuario <i
+                                    class="bi bi-pencil-square" style="color: white;"></i></a>
+                            <a class="btn btn-danger ms-auto" href="">Eliminar Usuario <i class="bi bi-trash"
+                                    style="color: white;"></i> </a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
             {{/each}}
         </div>

@@ -1,10 +1,44 @@
 body {
-    background-color: whitesmoke;
+    background: #F5f6f5;
     font-family: 'Rubik', sans-serif;
+    height: 100%;
+    background-image: url('/img/Background.png');
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: large;
+}
+
+body h1 {
+    color: #000000;
+    text-shadow: 2px 2px 4px white;
+}
+
+body h3 {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.bg-imagen {
+    /* The image used */
+    /* Add the blur effect */
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    /* Full height */
+    height: 100%;
 }
 
 .tbls {
     border: 2px;
     border-radius: 2px;
     border-top: black;
+}
+
+.micard {
+    background-color: #F5f6f5;
 }

@@ -90,7 +90,7 @@
                                 <tbody>
                                     {{#each result}}
                                     {{#if status}} {{!Si Valor es menor Rojo}}
-                                    <tr class="bg-danger">
+                                    <tr class="" style="background-color: #FF6961;">
                                         <td>{{N_Producto}}</td>
                                         <td>{{Stock_Actual}}</td>
                                         <td>{{Stock_Minimo}}</td>
@@ -110,7 +110,7 @@
 
                                     </tr>
                                     {{else if StatusEq}} {{! Si Valor es igual fondo = Amarillo}}
-                                    <tr class="bg-warning">
+                                    <tr class="" style="background-color: #FDFD96;">
                                         <td>{{N_Producto}}</td>
                                         <td>{{Stock_Actual}}</td>
                                         <td>{{Stock_Minimo}}</td>
@@ -128,7 +128,7 @@
                                                 </ion-icon></a></Td>
                                     </tr>
                                     {{else}}
-                                    <tr style="color: black;">
+                                    <tr style="color: black; background-color: aliceblue;">
                                         <td>{{N_Producto}}</td>
                                         <td>{{Stock_Actual}}</td>
                                         <td>{{Stock_Minimo}}</td>

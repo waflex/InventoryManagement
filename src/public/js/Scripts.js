@@ -7,10 +7,10 @@ $(document).ready(function() {
         var url = "Inventario/Eliminar/" + id_p;
         $(".Modal-Eliminar-p").attr("href", url);
 
-        $("#myModal").modal("show");
+        $("#myModal").modal("toggle");
     });
     $(".Modal-Dismiss").click(function() {
-        $("#myModal").modal("dismiss");
+        $("#myModal").modal("toggle");
     });
 
     //Controlador para Agregar Usuarios y cosas
