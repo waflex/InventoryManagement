@@ -12,7 +12,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     {{#each solicitudes}}
-                    <div class="card">
+                    <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                         <div class="card-header">
                             <p>
                             <div class="row">
@@ -25,7 +25,7 @@
                                             <h4>Creado </h4>{{timeago F_Solicitud}}
                                         </div>
                                         <div class="col">
-                                            <h4>Estado</h4>{{Estado}}
+                                            <h4>Estado</h4>{{{Estado}}}
                                         </div>
                                     </div>
                                 </div>
@@ -42,6 +42,7 @@
                                 <div class="card card-body">
                                     Productos Solicitados
                                     <br>
+                                    {{F_Solicitud}}
                                     <div class="row mt-2">
                                         {{#each PSolicitados}}
                                         <div class="col-md-6 my-auto">
@@ -55,7 +56,9 @@
                                         {{/each}}
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4 mt-4">
-                                            <a class="btn btn-outline-info" href="../../Solicitudes/DetallesMiSolicitud/{{Id_Solicitud}}" type="submit">Ver Detalles</a>
+                                            <a class="btn btn-outline-info"
+                                                href="../../Solicitudes/DetallesMiSolicitud/{{Id_Solicitud}}"
+                                                type="submit">Ver Detalles</a>
                                         </div>
                                     </div>
                                 </div>

@@ -18,8 +18,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <span>Filtrar por Funcionario</span>
-                                    <select class="custom-select form-control" id="Usuario" name="Usuario"
-                                        required>
+                                    <select class="custom-select form-control" id="Usuario" name="Usuario" required>
                                         <option selected>Seleccione Funcionario</option>
                                         {{#each users}}
                                         <option value="{{ID}}">{{Nom_usu}}</option>
@@ -28,8 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <span>Filtrar por Estado</span>
-                                    <select class="custom-select form-control" id="Estado" name="Estado"
-                                        required>
+                                    <select class="custom-select form-control" id="Estado" name="Estado" required>
                                         <option selected>Seleccione Estado</option>
                                         <option value="Entregada">Entregada</option>
                                         <option value="En Proceso">En Proceso</option>
@@ -38,7 +36,8 @@
                                 </div>
                                 <div class="form-group mt-4 ms-3">
                                     <button class="btn btn-success" type="submit">Aplicar Filtro</button>
-                                    <a href="../../Solicitudes/SolicitudesGenerales" class="btn btn-danger">Quitar Filtro</a>
+                                    <a href="../../Solicitudes/SolicitudesGenerales" class="btn btn-danger">Quitar
+                                        Filtro</a>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +45,7 @@
                 </div>
                 <div class="col-md-8">
                     {{#each solicitudes}}
-                    <div class="card">
+                    <div class="card" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                         <div class="card-header">
                             <p>
                             <div class="row">

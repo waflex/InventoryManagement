@@ -67,7 +67,23 @@
                                     <div class="col">{{this.items.Stock_Actual}}</div>
                                 </div>
                                 {{/each}}
-                                {{#if solicitudes.PrEntregados}}                           
+                                {{#if solicitudes.PrEntregados}}   
+                                <hr>
+                                <div class="row mt-2">
+                                    <form action="solicitudes/AprobarSolicitud/" method="post"></form>
+                                    <div class="col mt-2">
+                                        <h4>Entregado por</h4>
+                                        <hr>
+                                    </div>
+                                    <div class="col mt-2">
+                                        <h4>Fecha Entrega</h4>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col"><p>{{solicitudes.Id_Usuario_Entrega }}</p></div>
+                                    <div class="col"><p class="ms-5">{{solicitudes.F_Respuesta}}</p></div>
+                                </div>                        
                                 <div class="row">
                                     <div class="row mt-4">
                                         <div class="col-md-1"></div>
