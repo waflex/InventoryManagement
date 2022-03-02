@@ -5,14 +5,46 @@
             <h2 class="mx-auto" style="color: #000000;
                 text-shadow: 2px 2px 4px white; font-size: 50px;">
                 Control de Usuarios
-                </h2>
+            </h2>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
-            <form action="../Auth/ControlUsuarios/there?qs1=you&qs2=tube" method="post">
-                <input type="text" name="texto" value="Hola">
-                <button type="submit" class="btn btn-success"> boton</button>
+            <form action="../Auth/ControlUsuarios/?p=1" method="post">
+                <div class="card card-header">
+                    <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Filtros<i class="bi bi-funnel-fill"></i>
+                    </a>
+                </div>
+                <div class="collapse" id="collapseExample" data-aos="fade-down">
+                    <div class="card card-body">
+                        <span class="ms-2">Buscar Por RUT:</span>
+                        <input class="form-control ms-2 mb-2" style="width: 90%;" type="text" name="N_Producto" id="">
+                        <div class="form-group">
+                            <span>Filtrar Institucion:</span>
+                            <select class="custom-select form-control" id="Institucion" name="Institucion" required>
+                                <option selected>Seleccione Institucion</option>
+                                <option value="IPVC">IPVC</option>
+                                <option value="UB">UB</option>
+                                <option value="UAC">UAC</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <span>Filtrar Cargo</span>
+                            <select class="custom-select form-control" name="Tipo" id="Seccion" required>
+                                <option selected>Seleccione Cargo</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Auxiliar">Auxiliar</option>
+                                <option value="Funcionario">Funcionario</option>
+                            </select>
+                            <br>
+                        </div>
+                        <button class="form-control btn btn-success mx-2 mb-2" style="width: 93%;"
+                            type="submit">Buscar</button>
+                    </div>
+                </div>
             </form>
         </div>
         <div class="col-md-10">
