@@ -100,7 +100,7 @@ router.get("/ControlUsuarios", async(req, res) => {
         min = ((req.query.p * 10) - 10);
         max = req.query.p * 10;
     }
-    var sql = "SELECT * FROM users LIMIT " + min + "," + max;
+    var sql = "SELECT * FROM users WHERE ID != '" + req.user.ID + "' LIMIT " + min + "," + max;
     console.log(sql);
     var data = await pool.query(sql);
     res.render("Auth/ControlUsuarios", {
