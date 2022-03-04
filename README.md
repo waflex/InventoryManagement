@@ -1,2 +1,2 @@
 # InventoryManagement
-Le faltan unas herramientas pero ya funciona como corresponde
+Falta que se vean bien algunos parrafos, el resto esta listo
