@@ -554,7 +554,7 @@ router.get("/DetallesMiSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => 
         " Hrs"; //El dia 22 de Febrero, a las 00:00:00 Hrs
 
     //Conversion Fecha entrega a string
-    if (solicitudes[0].F_Respuesta) {
+    if (solicitudes[0].F_Respuesta != null) {
         fecha = solicitudes[0].F_Respuesta.toString();
         parts = fecha.split(" ");
         solicitudes[0].F_Respuesta =

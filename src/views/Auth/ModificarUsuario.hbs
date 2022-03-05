@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col">
+            <div class="border border-1 rounded mx-auto" style="background-color: aliceblue;">
+                <form action="" method="post">
+                    <h4 class="text-center">Modificar usuario</h4>
+                    <div class="row p-4">
+                        <div class="col p-4" style="background-color: aquamarine;">
+                            <div class="col" style="background-color: gray;">
+                                <label>Nombre Usuario:</label>
+                                <input class="ms-auto" type="text" name="Nom_usu" value="{{usuario.Nom_usu}}">
+                            </div><br>
+                            <label>Cargo del usuario</label>
+                            <label id="LabelCargo">{{usuario.Cargo}}</label>
+                            <input type="text" name="Cargo" id="Cargo" value="{{usuario.Cargo}}" hidden>
+                            <div class="btn-group dropend">
+                                <button type="button" class="ms-4 btn btn-light dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cambiar
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="SetAdministrador()">Administrador</a></li>
+                                    <li><a class="dropdown-item" onclick="SetAuxiliar()">Auxiliar</a></li>
+                                    <li><a class="dropdown-item" onclick="SetFuncionario()">Funcionario</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col p-4">
+                            <div>
+                                <label>Rut</label>
+                                <input type="text" name="ID" value="{{usuario.ID}}">
+                            </div><br>
+                            <label for="">Institucion a la que pertenece</label>
+                            <input type="text" name="Institucion" id="Institucion" value="{{usuario.Institucion}}" hidden>
+                            <label id="LabelInstitucion" name="LabelInstitucion">{{usuario.Institucion}}</label>
+                            <div class="btn-group dropend">
+                                <button type="button" class="ms-4 btn btn-light dropdown-toggle"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Cambiar
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" onclick="SetIPVC()">IPVC</a></li>
+                                    <li><a class="dropdown-item" onclick="SetUB()">UB</a></li>
+                                    <li><a class="dropdown-item" onclick="SetUAC()">UAC</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mx-auto">
+                            <button class="btn btn-success btn-block" type="submit">Subir</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/Cambios.js"></script>

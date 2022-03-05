@@ -15,7 +15,7 @@
                         {{/if}}
                         <br>
                         <div class="row">
-                            <form action="solicitudes/AprobarSolicitud/" method="post"></form>
+                            <form action="solicitudes/AprobarSolicitud/" method="post">
                             <div class="col">
                                 <h4>Solicitado por</h4>
                                 <hr>
@@ -49,7 +49,6 @@
                         </div>
                         <br>
                         <div class="row">
-                            <form action="" method="post">
                                 {{#each solicitudes.PSolicitados}}
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -60,9 +59,8 @@
                                 </div>
                                 {{/each}}
                                 {{#if solicitudes.PrEntregados}}
-                                <hr>
+                                <hr class="mt-4 mb-2">
                                 <div class="row mt-2">
-                                    <form action="solicitudes/AprobarSolicitud/" method="post"></form>
                                     <div class="col mt-2">
                                         <h4>Entregado por</h4>
                                         <hr>
@@ -91,7 +89,6 @@
                                     </div>
                                     <br>
                                     <div class="row mt-3 mb-5">
-                                        <form action="" method="post">
                                             {{#each solicitudes.PrEntregados}}
                                             <div class="row">
                                                 <div class="col-md-1"></div>

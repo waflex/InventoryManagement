@@ -109,7 +109,6 @@ router.post("/Agregar", async(req, res) => {
 });
 
 
-
 //Links Modificacion
 router.get("/Modificar/:Id_Producto", isLoggedIn, async(req, res) => {
     const { Id_Producto } = req.params;

@@ -69,7 +69,7 @@ router.get("/CambiarContrasena", isLoggedIn, (req, res) => {
 
 router.post('/Auth/CambiarContrasena', isLoggedIn, helpers.Compare, async(req, res) => {
     req.flash("success", "Su contraseña ha sido actualizada");
-    res.redirect('../../Perfil');
+    res.redirect('../Perfil');
 });
 
 
@@ -87,7 +87,7 @@ router.get('/logout', isLoggedIn, (req, res) => {
 });
 
 
-router.get("/ControlUsuarios", async(req, res) => {
+router.get("/ControlUsuarios", isLoggedIn, async(req, res) => {
     var maxPages = await pool.query("SELECT * FROM users");
     const perPage = parseInt(maxPages.length / 10) + 1;
     const page = req.query.p;
@@ -111,6 +111,20 @@ router.get("/ControlUsuarios", async(req, res) => {
         },
         data
     });
+});
+
+
+router.get("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
+    const { ID } = req.params;
+    var usuario = await pool.query('SELECT * FROM users WHERE ID =?', ID);
+    usuario = usuario[0];
+    console.log(usuario);
+    res.render("Auth/ModificarUsuario", { usuario });
+});
+
+router.post("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
+    //var cargos = document.getElementById("Cargo").textContent;
+    console.log(req.body);
 });
 
 module.exports = router;

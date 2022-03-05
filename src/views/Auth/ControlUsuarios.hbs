@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row justify-content-md-cente">
         <div class="col col-lg-2"></div>
-        <div class="col-md-auto mt-5">
+        <div class="col mt-5 text-center">
             <h2 class="mx-auto" style="color: #000000;
                 text-shadow: 2px 2px 4px white; font-size: 50px;">
                 Control de Usuarios
@@ -48,28 +48,6 @@
             </form>
         </div>
         <div class="col-md-10">
-            <div class="pagination pagination-centered">
-                <nav aria-label="Page navigation example" class="ms-auto">
-                    <ul class="pagination">
-                        {{#paginate pagination type="first"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
-                                href="?p={{n}}">Inicio</a></li>
-                        {{/paginate}}
-                        {{#paginate pagination type="previous"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
-                                    class="bi bi-arrow-left"></i></a></li>
-                        {{/paginate}}
-                        {{#paginate pagination type="next"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
-                                    class="bi bi-arrow-right"></i></a></li>
-                        {{/paginate}}
-                        {{#paginate pagination type="last"}}
-                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
-                                href="?p={{n}}">Ultima</a></li>
-                        {{/paginate}}
-                    </ul>
-                </nav>
-            </div>
             {{#each data}}
             <div class="card mt-4 mx-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
                 <div class="card-header">
@@ -99,9 +77,9 @@
                     <div class="row mt-2">
                         <div class="col-md-5"></div>
                         <div class="col">
-                            <a class="btn btn-info ms-auto" href="">Cambiar Contraseña <i class="bi bi-pencil-square"
+                            <a class="btn btn-info ms-auto" href="/CambiarContraseña/{{ID}}">Cambiar Contraseña <i class="bi bi-pencil-square"
                                     style="color: white;"></i></a>
-                            <a class="btn btn-info ms-auto" href="">Modificar Usuario <i class="bi bi-pencil-square"
+                            <a class="btn btn-info ms-auto" href="/ModificarUsuario/{{ID}}">Modificar Usuario <i class="bi bi-pencil-square"
                                     style="color: white;"></i></a>
                             <a class="btn btn-danger ms-auto" href="">Eliminar Usuario <i class="bi bi-trash"
                                     style="color: white;"></i> </a>
@@ -111,6 +89,28 @@
 
             </div>
             {{/each}}
+            <div class="pagination pagination-centered mt-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                <nav aria-label="Page navigation example" class="mx-auto">
+                    <ul class="pagination">
+                        {{#paginate pagination type="first"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}">Inicio</a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="previous"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
+                                    class="bi bi-arrow-left"></i></a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="next"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link" href="?p={{n}}"><i
+                                    class="bi bi-arrow-right"></i></a></li>
+                        {{/paginate}}
+                        {{#paginate pagination type="last"}}
+                        <li {{#if disabled}}class="disabled page-item" {{/if}}><a class="page-link"
+                                href="?p={{n}}">Ultima</a></li>
+                        {{/paginate}}
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

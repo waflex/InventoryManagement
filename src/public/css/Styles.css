@@ -43,3 +43,7 @@ body h3 {
 .micard {
     background-color: #F5f6f5;
 }
+
+.shadows label {
+    text-shadow: 2px 2px 4px white;
+}
