@@ -22,19 +22,6 @@ router.post("/testing123", async(req, res) => {
 
     res.redirect('testing123');
 });
-/*router.post("/parse", async(req, res) => {
-    const data = await pool.query('SELECT * FROM trash WHERE ID = 1');
-    //'{\n\t"id": "123@w123.q",\n\t"ps": "123"\n}'
-    for (let v in data) {
-        let str = data[v].datamax;
-        let obj = JSON.parse(str);
-        console.log(obj.ps);
-    }
-
-    //await pool.query('INSERT INTO `trash` set ?', [NuevoProducto]);
-
-    res.redirect('testing123');
-});*/
 
 //JSON a Object
 router.post("/parse", async(req, res) => {
@@ -50,6 +37,3 @@ router.post("/checkbox", (req, res) => {
 });
 
 module.exports = router;
-
-
-///SELECT domain FROM mytable WHERE domain LIKE '%domain.com%'; para filtros escritos

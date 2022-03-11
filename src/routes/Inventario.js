@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const id = require('../lib/Ids');
+const ids = require('../lib/Ids');
 
 
 const pool = require('../database');
@@ -8,7 +8,7 @@ const { isLoggedIn } = require('../lib/auth');
 
 //Links Pag Principal Inventario
 router.get('/', isLoggedIn, async(req, res) => {
-    const data = await pool.query('SELECT * FROM productos');
+    const data = await pool.query('SELECT * FROM productos ORDER BY `productos`.`N_Producto` ASC');
     const result = [];
     for (let key in data) {
         if (data[key].Stock_Actual < data[key].Stock_Minimo) {
@@ -53,6 +53,7 @@ router.post("/Filtrado", isLoggedIn, async(req, res) => {
     if (req.body.Tipo != "Seleccione Categoria") {
         sql += " AND Tipo = '" + req.body.Tipo + "'";
     }
+    sql += " ORDER BY `productos`.`N_Producto` ASC";
     var data = await pool.query(sql);
     const result = [];
     for (let key in data) {
@@ -90,9 +91,11 @@ router.get("/Agregar", isLoggedIn, (req, res) => {
 });
 
 router.post("/Agregar", async(req, res) => {
+    var last = await pool.query('SELECT * FROM `productos` ORDER BY `productos`.`F_Agregado` DESC');
+    var id = await ids.mkIdProd(last);
     const { N_Producto, Stock_Actual, Stock_Minimo, Institucion, Tipo, Ubicacion, Observacion } = req.body;
     const NuevoProducto = {
-        Id_Producto: id.makeid(5),
+        Id_Producto: id,
         N_Producto,
         Stock_Actual,
         Stock_Minimo,

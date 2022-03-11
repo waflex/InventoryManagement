@@ -11,7 +11,7 @@
     <div class="row">
         <div class="col-md-2">
             <form action="../Auth/ControlUsuarios/?p=1" method="post">
-                <div class="card card-header">
+                <div class="card card-header border-0">
                     <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample">
                         Filtros<i class="bi bi-funnel-fill"></i>
@@ -74,19 +74,30 @@
                             <p>Ultima Conexion: {{timeago Lst_conn}}</p>
                         </div>
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-md-5"></div>
-                        <div class="col">
-                            <a class="btn btn-info ms-auto" href="/CambiarContraseña/{{ID}}">Cambiar Contraseña <i class="bi bi-pencil-square"
-                                    style="color: white;"></i></a>
-                            <a class="btn btn-info ms-auto" href="/ModificarUsuario/{{ID}}">Modificar Usuario <i class="bi bi-pencil-square"
-                                    style="color: white;"></i></a>
-                            <a class="btn btn-danger ms-auto" href="">Eliminar Usuario <i class="bi bi-trash"
-                                    style="color: white;"></i> </a>
+                    <div class="row mt-2 justify-content-end">
+                        <div class="d-flex justify-content-end">
+                            <!-- Example split danger button -->
+                            <div class="btn-group dropup">
+                                <a href="../Movimientos/{{ID}}" type="button" class="btn btn-info"> Ver Movimientos Usuario</a>
+                                <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span class="visually-hidden">a</span>
+                                </button>
+                                <ul class="dropdown-menu" style="background-color: #e1dac8;">
+                                    <li><a class="btn btn-info ms-auto dropdown-item"
+                                            href="/CambiarContraseña/{{ID}}">Cambiar Contraseña
+                                            <i class="bi bi-pencil-square" style="color: gray;"></i></a></li>
+                                    <li><a class="btn btn-info ms-auto dropdown-item"
+                                            href="/ModificarUsuario/{{ID}}">Modificar Usuario <i
+                                                class="bi bi-pencil-square" style="color: gray;"></i></a></li>
+                                    <li><a class="btn btn-danger ms-auto dropdown-item" href="">Eliminar Usuario <i
+                                                class="bi bi-trash" style="color: red;"></i> </a></li>
+                                    <li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             {{/each}}
             <div class="pagination pagination-centered mt-5" data-aos="fade-up" data-aos-anchor-placement="top-bottom">

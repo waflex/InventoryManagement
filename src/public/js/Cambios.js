@@ -1,42 +1,50 @@
 //CAMBIO INSTITUCION
 function SetIPVC() {
-    var x = document.getElementById("LabelInstitucion");
-    x.innerHTML = "IPVC";
+    document.getElementById("LabelInstitucion").innerHTML = "IPVC";
     document.getElementById("Institucion").value = "IPVC";
+    $(".cancel").attr("hidden", false);
 
 }
 
 function SetUB() {
-    var x = document.getElementById("LabelInstitucion");
-    x.innerHTML = "UB";
+    document.getElementById("LabelInstitucion").innerHTML = "UB";
     document.getElementById("Cargo").value = "UB";
+    $(".cancel").attr("hidden", false);
+
 
 }
 
 function SetUAC() {
-    var x = document.getElementById("LabelInstitucion");
-    x.innerHTML = "UAC";
+    document.getElementById("LabelInstitucion").innerHTML = "UAC";
     document.getElementById("Cargo").value = "UAC";
+    $(".cancel").attr("hidden", false);
+
 
 }
 //CAMBIOS CARGO
 function SetAuxiliar() {
-    var x = document.getElementById("LabelCargo");
-    x.innerHTML = "Auxiliar";
+    document.getElementById("LabelCargo").innerHTML = "Auxiliar";
     document.getElementById("Cargo").value = "Auxiliar";
+    $(".cancel").attr("hidden", false);
+
 
 }
 
 function SetFuncionario() {
-    var x = document.getElementById("LabelCargo");
-    x.innerHTML = "Funcionario";
+    document.getElementById("LabelCargo").innerHTML = "Funcionario";
     document.getElementById("Cargo").value = "Funcionario";
+    $(".cancel").attr("hidden", false);
+
 
 }
 
 function SetAdministrador() {
-    var x = document.getElementById("LabelCargo");
-    x.innerHTML = "Administrador";
+    document.getElementById("LabelCargo").innerHTML = "Administrador";
     document.getElementById("Cargo").value = "Administrador";
+    $(".cancel").attr("hidden", false);
+
 }
 //CAMBIOS ESTADO
+
+
+//Cancelar cambios individuales

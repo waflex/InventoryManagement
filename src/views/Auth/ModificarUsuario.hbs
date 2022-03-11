@@ -1,14 +1,14 @@
-<div class="container">
-    <div class="row mt-5">
+<div class="container-fluid">
+    <h1 class="text-center mt-2">Modificar usuario</h1>
+    <div class="row p-5">
         <div class="col">
             <div class="border border-1 rounded mx-auto" style="background-color: aliceblue;">
-                <form action="" method="post">
-                    <h4 class="text-center">Modificar usuario</h4>
+                <form class="" action="" method="post">                    
                     <div class="row p-4">
-                        <div class="col p-4" style="background-color: aquamarine;">
-                            <div class="col" style="background-color: gray;">
+                        <div class="col p-4">
+                            <div class="col">
                                 <label>Nombre Usuario:</label>
-                                <input class="ms-auto" type="text" name="Nom_usu" value="{{usuario.Nom_usu}}">
+                                <input class="form-control input-sm" type="text" name="Nom_usu" value="{{usuario.Nom_usu}}">
                             </div><br>
                             <label>Cargo del usuario</label>
                             <label id="LabelCargo">{{usuario.Cargo}}</label>
@@ -27,8 +27,8 @@
                         </div>
                         <div class="col p-4">
                             <div>
-                                <label>Rut</label>
-                                <input type="text" name="ID" value="{{usuario.ID}}">
+                                <label>Rut:</label>
+                                <input class="form-control" type="text" name="ID" value="{{usuario.ID}}">
                             </div><br>
                             <label for="">Institucion a la que pertenece</label>
                             <input type="text" name="Institucion" id="Institucion" value="{{usuario.Institucion}}" hidden>
@@ -47,15 +47,27 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col mx-auto">
-                            <button class="btn btn-success btn-block" type="submit">Subir</button>
+                        <div class="col text-center p-2">
+                            <label>Fecha Creacion: {{usuario.F_add}}</label><br>
+                            <label>Ultima Conexion: {{timeago usuario.Lst_conn}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center p-2">
+                            <button class="btn btn-success btn-block" type="submit">Guardar Cambios</button>
+                            <a href="../ModificarUsuario/{{usuario.ID}}" class="btn btn-danger btn-block cancel" type="submit" hidden>Cancelar Cambios</a>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            
+        </div>
+    </div>
 </div>
 
-
+<link rel="stylesheet" href="../css/ModUser.css">
 <script src="../js/Cambios.js"></script>

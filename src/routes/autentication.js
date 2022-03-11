@@ -4,6 +4,8 @@ var paginate = require('handlebars-paginate');
 const pool = require("../database");
 const passport = require('passport');
 const { isLoggedIn } = require('../lib/auth');
+const { mkIdSol, makeid } = require('../lib/Ids');
+const fechas = require("../lib/format fechas");
 const helpers = require("../lib/Helpers");
 const Handlebars = require("handlebars");
 var paginate = require('handlebars-paginate');
@@ -101,8 +103,12 @@ router.get("/ControlUsuarios", isLoggedIn, async(req, res) => {
         max = req.query.p * 10;
     }
     var sql = "SELECT * FROM users WHERE ID != '" + req.user.ID + "' LIMIT " + min + "," + max;
-    console.log(sql);
     var data = await pool.query(sql);
+    var b = 0;
+    for (let i in data) {
+        Object.assign(data[i], { Nav: "A" + b });
+        b++;
+    }
     res.render("Auth/ControlUsuarios", {
         pagination: {
             page: req.query.p,
@@ -118,13 +124,27 @@ router.get("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     const { ID } = req.params;
     var usuario = await pool.query('SELECT * FROM users WHERE ID =?', ID);
     usuario = usuario[0];
-    console.log(usuario);
+    //Conversion Fecha a String para concatenar texto
+    var fecha = usuario.F_add.toString();
+    var parts = fecha.split(" ");
+    usuario.F_add =
+        "El dia " +
+        fechas.formatoDia(parts[0]) +
+        " " +
+        parts[2] +
+        " de " +
+        fechas.formatoMes(parts[1]) +
+        " " +
+        parts[3] +
+        " a las " +
+        parts[4] +
+        " Hrs"; //El dia 22 de Febrero, a las 00:00:00 Hrs
+
     res.render("Auth/ModificarUsuario", { usuario });
 });
 
 router.post("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     //var cargos = document.getElementById("Cargo").textContent;
-    console.log(req.body);
 });
 
 module.exports = router;

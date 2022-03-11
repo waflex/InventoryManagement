@@ -150,8 +150,10 @@ router.get("/Estado", isLoggedIn, isEmpty, (req, res) => {
 
 router.post("/EnviarSolicitud", async(req, res) => {
     var prods = JSON.stringify(req.session.cart.items, null, "\t");
+    var last = await pool.query('SELECT * FROM `solicitudes` ORDER BY `F_Solicitud` DESC LIMIT 1;');
+    var id = await ids.mkIdSol(last);
     const solicitud = {
-        Id_Solicitud: ids.makeid(10),
+        Id_Solicitud: id,
         Id_Usuario: req.user.ID,
         PSolicitados: prods,
         Estado: "En Proceso",
