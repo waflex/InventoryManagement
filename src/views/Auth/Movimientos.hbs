@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row mt-4">
+        <h1 class="text-center">Movimientos Usuario</h2>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-end">
+            <a class="btn btn-info mb-2" href="../../ControlUsuarios?p=1">Volver a usuarios <i class="bi bi-arrow-counterclockwise"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Cantidad Inicial</th>
+                        <th scope="col">Cantidad Modificada</th>
+                        <th scope="col">Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if data}}
+                    {{#each data}}
+                    <tr>
+                        <th scope="row">{{Id_Producto}}</th>
+                        <td>{{Cant_Previa}}</td>
+                        <td>{{Cant_Nueva}}</td>
+                        <td>{{timeago Fecha}}</td>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+            {{else}}
+            </tbody>
+            </table>
+            <h2 class="text-center">El usuario no presenta registros</h2>
+            {{/if}}
+        </div>
+    </div>
+
+</div>

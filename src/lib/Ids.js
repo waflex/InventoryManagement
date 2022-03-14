@@ -10,7 +10,6 @@ ids.mkIdSol = async function(last) {
     } else {
         last = last[0];
         let aux = last.Id_Solicitud;
-        console.log(last);
         const array = aux.split("-");
         var incrementvalue = (+array[1]) + 1;
         incrementvalue = ("00000" + incrementvalue).slice(-incrementvalue.length);
@@ -27,7 +26,6 @@ ids.mkIdProd = async function(last) {
     } else {
         last = last[0];
         let aux = last.Id_Producto;
-        console.log(last);
         const array = aux.split("-");
         var incrementvalue = (+array[1]) + 1;
         incrementvalue = ("00000" + incrementvalue).slice(-incrementvalue.length);

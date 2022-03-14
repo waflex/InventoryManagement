@@ -58,7 +58,6 @@ router.post('/Auth/NuevoUsuario', passport.authenticate('local.signup', {
 //REDIRECCIONAMIENTO USUARIO INICIADO
 router.get("/Perfil", isLoggedIn, (req, res) => {
     res.render('Perfil');
-
 });
 
 
@@ -119,6 +118,47 @@ router.get("/ControlUsuarios", isLoggedIn, async(req, res) => {
     });
 });
 
+router.post("/ControlUsuarios", isLoggedIn, async(req, res) => {
+    var maxPages = await pool.query("SELECT * FROM users");
+    const perPage = parseInt(maxPages.length / 10) + 1;
+    if (!req.query.p) { req.query.p = 1; }
+    const page = req.query.p;
+    var min;
+    var max;
+    if (req.query.p > 1) {
+        min = (((req.query.p * 10) - 10) + 1);
+        max = req.query.p * 10;
+    } else {
+        min = ((req.query.p * 10) - 10);
+        max = req.query.p * 10;
+    }
+    var sql = "SELECT * FROM users WHERE 1";
+
+    if (req.body.ID != "") {
+        sql += " AND ID LIKE '%" + req.body.ID + "%'";
+    }
+
+    if (req.body.Institucion != "Seleccione Institucion") {
+        sql += " AND Institucion = '" + req.body.Institucion + "'";
+    }
+
+    if (req.body.Cargo != "Seleccione Cargo") {
+        sql += " AND Cargo = '" + req.body.Cargo + "'";
+    }
+
+    sql += " LIMIT " + min + "," + max;
+
+    var data = await pool.query(sql);
+
+    res.render("Auth/ControlUsuarios", {
+        pagination: {
+            page: req.query.p,
+            pageCount: perPage
+
+        },
+        data
+    });
+});
 
 router.get("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     const { ID } = req.params;
@@ -144,7 +184,31 @@ router.get("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
 });
 
 router.post("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
-    //var cargos = document.getElementById("Cargo").textContent;
+    const { Nom_usu, Cargo, ID, Institucion } = req.body;
+    const user = {
+        ID,
+        Nom_usu,
+        Cargo,
+        Institucion
+    };
+
+    await pool.query('UPDATE users SET ? WHERE ID = ?', [user, ID]);
+    req.flash('success', 'Usuario Modificado Existosamente');
+    res.redirect("/ModificarUsuario/" + ID);
+});
+
+
+
+router.get("/Movimientos/:ID", async(req, res) => {
+    const ID = req.params.ID;
+    const data = await pool.query('SELECT * FROM modificaciones_productos WHERE Id_Usuario =?', ID);
+    //ID to Nombre
+    for (let i in data) {
+        var nombre = await pool.query('Select * from productos where  Id_Producto= ?', data[i].Id_Producto);
+        data[i].Id_Producto = nombre[0].N_Producto;
+    }
+
+    res.render("Auth/Movimientos", { data });
 });
 
 module.exports = router;

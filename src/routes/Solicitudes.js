@@ -191,7 +191,6 @@ router.get("/MisSolicitudes", isLoggedIn, async(req, res) => {
         "SELECT * FROM solicitudes WHERE Id_Usuario = ? ORDER BY F_Solicitud DESC;", [req.user.ID]
     );
 
-    //console.log(solicitudes);
     for (let v in solicitudes) {
         if (solicitudes[v].Estado == "Entregada") {
             //Asignación de icono
@@ -237,7 +236,6 @@ router.get("/SolicitudesGenerales", isLoggedIn, async(req, res) => {
         "SELECT * FROM `users` WHERE Cargo='Funcionario' OR Cargo= 'Administrador'"
     );
     var nombre;
-    //console.log(solicitudes);
     for (let v in solicitudes) {
         nombre = await pool.query("SELECT Nom_usu FROM users WHERE ID = ?", [
             solicitudes[v].Id_Usuario,
@@ -292,7 +290,6 @@ router.post("/SolicitudesGenerales/Filtro", isLoggedIn, async(req, res) => {
 
     var solicitudes = await pool.query(sql);
     var nombre;
-    //console.log(solicitudes);
     for (let v in solicitudes) {
         nombre = await pool.query("SELECT Nom_usu FROM users WHERE ID = ?", [
             solicitudes[v].Id_Usuario,
@@ -653,7 +650,6 @@ router.get("/RechazarSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => {
     await pool.query(
         "UPDATE `solicitudes` SET Estado=?,Id_Usuario_Entrega=?  WHERE Id_Solicitud = ?", [status, usuario, Id_Solicitud]
     );
-    console.log(req.body);
     res.redirect("../../Solicitudes/DetallesSolicitud/" + Id_Solicitud);
 });
 

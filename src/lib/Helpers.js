@@ -58,7 +58,6 @@ helpers.Compare = async(req, res, next) => {
     } else {
         if (req.body.Newpassword == req.body.Copypassword) {
             req.body.Newpassword = await helpers.encryptPassword(req.body.Newpassword);
-            console.log(req.body.Newpassword);
             await pool.query('UPDATE users set Cont_usu = ? WHERE ID = ?', [req.body.Newpassword, req.user.ID]);
             return next();
         } else {

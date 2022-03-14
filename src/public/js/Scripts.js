@@ -7,10 +7,24 @@ $(document).ready(function() {
         var url = "Inventario/Eliminar/" + id_p;
         $(".Modal-Eliminar-p").attr("href", url);
 
-        $("#myModal").modal("toggle");
+        $("#myModal").modal("show");
     });
     $(".Modal-Dismiss").click(function() {
-        $("#myModal").modal("toggle");
+        $("#myModal").modal("hide");
+    });
+
+    //Modal Eliminar Usuario
+    $(".Borrar_Usuario").click(function() {
+        var id_p = $(this).attr("rel");
+        var N_P = $(this).attr("ID");
+        document.getElementById("ID").textContent = N_P;
+        var url = "Eliminar/" + id_p;
+        $(".Modal-Eliminar-Us").attr("href", url);
+
+        $("#EliminarUsuario").modal("show");
+    });
+    $(".Modal-Dismiss").click(function() {
+        $("#EliminarUsuario").modal("hide");
     });
 
     //Controlador para Agregar Usuarios y cosas

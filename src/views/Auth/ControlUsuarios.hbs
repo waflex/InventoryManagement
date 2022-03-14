@@ -1,3 +1,4 @@
+{{>modal}}
 <div class="container-fluid">
     <div class="row justify-content-md-cente">
         <div class="col col-lg-2"></div>
@@ -10,7 +11,7 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <form action="../Auth/ControlUsuarios/?p=1" method="post">
+            <form action="../ControlUsuarios?p=1" method="post">
                 <div class="card card-header border-0">
                     <a class="btn btn-primary btn-block" data-bs-toggle="collapse" href="#collapseExample" role="button"
                         aria-expanded="false" aria-controls="collapseExample">
@@ -20,7 +21,7 @@
                 <div class="collapse" id="collapseExample" data-aos="fade-down">
                     <div class="card card-body">
                         <span class="ms-2">Buscar Por RUT:</span>
-                        <input class="form-control ms-2 mb-2" style="width: 90%;" type="text" name="N_Producto" id="">
+                        <input class="form-control ms-2 mb-2" style="width: 90%;" type="text" name="ID" id="ID">
                         <div class="form-group">
                             <span>Filtrar Institucion:</span>
                             <select class="custom-select form-control" id="Institucion" name="Institucion" required>
@@ -33,7 +34,7 @@
                         <br>
                         <div class="form-group">
                             <span>Filtrar Cargo</span>
-                            <select class="custom-select form-control" name="Tipo" id="Seccion" required>
+                            <select class="custom-select form-control" name="Cargo" id="Cargo" required>
                                 <option selected>Seleccione Cargo</option>
                                 <option value="Administrador">Administrador</option>
                                 <option value="Auxiliar">Auxiliar</option>
@@ -90,7 +91,7 @@
                                     <li><a class="btn btn-info ms-auto dropdown-item"
                                             href="/ModificarUsuario/{{ID}}">Modificar Usuario <i
                                                 class="bi bi-pencil-square" style="color: gray;"></i></a></li>
-                                    <li><a class="btn btn-danger ms-auto dropdown-item" href="">Eliminar Usuario <i
+                                    <li><a id="{{Nom_usu}}" rel="{{ID}}" class="Borrar_Usuario btn btn-danger ms-auto dropdown-item" href="javascript:void(0)">Eliminar Usuario <i
                                                 class="bi bi-trash" style="color: red;"></i> </a></li>
                                     <li>
                                 </ul>
