@@ -197,9 +197,24 @@ router.post("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     res.redirect("/ModificarUsuario/" + ID);
 });
 
+router.get("/Reestablecer/:ID", isLoggedIn, async(req, res) => {
+    const id = req.params.ID;
+    var psw = "Lautaro950";
+    psw = helpers.encryptPassword(psw);
+    psw = { Cont_usu: psw };
+    await pool.query('UPDATE users SET ? WHERE ID = ?', [psw, id]);
+    res.redirect("/ControlUsuarios?p=1");
 
+});
 
-router.get("/Movimientos/:ID", async(req, res) => {
+router.get("/Eliminar/:ID", isLoggedIn, async(req, res) => {
+    const id = req.params.ID;
+    await pool.query('DELETE FROM users WHERE ID=?', [id]);
+    res.redirect("/ControlUsuarios?p=1");
+
+});
+
+router.get("/Movimientos/:ID", isLoggedIn, async(req, res) => {
     const ID = req.params.ID;
     const data = await pool.query('SELECT * FROM modificaciones_productos WHERE Id_Usuario =?', ID);
     //ID to Nombre

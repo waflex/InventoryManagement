@@ -192,6 +192,17 @@ router.get("/MisSolicitudes", isLoggedIn, async(req, res) => {
     );
 
     for (let v in solicitudes) {
+        var fecha = solicitudes[0].F_Solicitud.toString();
+        var parts = fecha.split(" ");
+        solicitudes[0].F_Solicitud =
+            fechas.formatoDia(parts[0]) +
+            " " +
+            parts[2] +
+            "/" +
+            fechas.formatoMes(parts[1]) +
+            "/" +
+            parts[3];
+
         if (solicitudes[v].Estado == "Entregada") {
             //Asignación de icono
             solicitudes[v].Estado =
@@ -361,11 +372,6 @@ router.get("/DetallesSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => {
         ]);
         solicitudes[0].Id_Usuario_Entrega = nombre[0].Nom_usu;
     }
-
-
-
-
-
 
     //Asignación Icono según estado Solicitud
     if (solicitudes[0].Estado == "Entregada") {
@@ -643,12 +649,13 @@ router.post("/DetallesSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => {
     res.redirect("../../Solicitudes/DetallesSolicitud/" + Id_Solicitud);
 });
 
-router.get("/RechazarSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => {
+router.post("/RechazarSolicitud/:Id_Solicitud", isLoggedIn, async(req, res) => {
     var Id_Solicitud = req.params.Id_Solicitud;
+    var Observacion = req.body.Observacion;
     var status = "Cancelada";
     var usuario = req.user.ID;
     await pool.query(
-        "UPDATE `solicitudes` SET Estado=?,Id_Usuario_Entrega=?  WHERE Id_Solicitud = ?", [status, usuario, Id_Solicitud]
+        "UPDATE `solicitudes` SET Estado=?,Id_Usuario_Entrega=?,Observacion= ?  WHERE Id_Solicitud = ?", [status, usuario, Observacion, Id_Solicitud]
     );
     res.redirect("../../Solicitudes/DetallesSolicitud/" + Id_Solicitud);
 });

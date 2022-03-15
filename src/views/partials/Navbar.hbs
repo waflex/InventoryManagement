@@ -43,7 +43,9 @@
                         style="background-color: #3647E8;">
                         <li><a class="dropdown-item" href="../../Inventario?p=1">Listado</a></li>
                         <li><a class="dropdown-item" href="../../Inventario/Agregar">Agregar Productos</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li><a class="dropdown-item" href="../../NuevoUsuario">Agregar Usuario</a></li>
                         <li><a class="dropdown-item" href="../../ControlUsuarios?p=1">Control de Usuarios</a></li>
 
@@ -61,7 +63,7 @@
                     </ul>
                 </li>
 
-                {{!Pregunta por Auxiliar}}
+                {{!Preguntar por Auxiliar}}
                 {{else if level2}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
@@ -110,7 +112,8 @@
                         style="background-color: #3647E8;">
                         <li><a class="dropdown-item" href="../../Solicitudes/">Crear/Agregar Solicitud</a></li>
                         {{#if productos}}
-                        <li><a class="dropdown-item" href="../../Solicitudes/Estado">Ver Solicitud</a></li>
+                        <li><a class="dropdown-item" href="../../Solicitudes/Estado">Ver Solicitud<span
+                                    class="badge bg-info text-dark">{{CantidadTotal}}</span></a></li>
                         {{/if}}
                         <li><a class="dropdown-item" href="../../Solicitudes/MisSolicitudes">Mis Solicitudes</a></li>
                     </ul>
@@ -126,7 +129,6 @@
                         <li><a class="dropdown-item" href="/Logout">Cerrar Sesión</a></li>
                     </ul>
                 </li>
-
                 {{/if}}
                 {{else}}
                 <li><a class="nav-link Text-White" href="/login"
