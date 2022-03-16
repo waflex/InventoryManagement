@@ -5,7 +5,7 @@ const ids = {};
 ids.mkIdSol = async function(last) {
     console.log(last);
     var ID;
-    if (!last.Id_Solicitud) {
+    if (!last[0].Id_Solicitud) {
         ID = "SOL-00001";
         return ID;
     } else {

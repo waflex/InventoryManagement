@@ -4,7 +4,6 @@ var paginate = require('handlebars-paginate');
 const pool = require("../database");
 const passport = require('passport');
 const { isLoggedIn } = require('../lib/auth');
-const { mkIdSol, makeid } = require('../lib/Ids');
 const fechas = require("../lib/format fechas");
 const helpers = require("../lib/Helpers");
 const Handlebars = require("handlebars");
