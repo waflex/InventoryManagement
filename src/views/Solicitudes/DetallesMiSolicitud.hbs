@@ -15,7 +15,6 @@
                         {{/if}}
                         <br>
                         <div class="row">
-                            <form action="solicitudes/AprobarSolicitud/" method="post">
                             <div class="col">
                                 <h4>Solicitado por</h4>
                                 <hr>
@@ -49,76 +48,75 @@
                         </div>
                         <br>
                         <div class="row">
-                                {{#each solicitudes.PSolicitados}}
-                                <div class="row">
+                            {{#each solicitudes.PSolicitados}}
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col"><label>{{this.items.N_Producto}}</label></div>
+                                <div class="col-md-5"><input type="hidden" name="IDp"
+                                        value="{{this.items.Id_Producto}}" /></div>
+                                <div class="col"><label>{{this.qty}}</label></div>
+                            </div>
+                            {{/each}}
+                            {{#if solicitudes.PrEntregados}}
+                            <hr class="mt-4 mb-2">
+                            <div class="row mt-2">
+                                <div class="col mt-2">
+                                    <h4>Entregado por</h4>
+                                    <hr>
+                                </div>
+                                <div class="col mt-2">
+                                    <h4>Fecha Entrega</h4>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="row mt-1">
+                                <div class="col">{{solicitudes.Id_Usuario_Entrega }}</div>
+                                <div class="col">{{solicitudes.F_Respuesta}}</div>
+                            </div>
+                            <div class="row">
+                                <div class="row mt-4">
                                     <div class="col-md-1"></div>
-                                    <div class="col"><label>{{this.items.N_Producto}}</label></div>
-                                    <div class="col-md-5"><input type="hidden" name="IDp"
-                                            value="{{this.items.Id_Producto}}" /></div>
-                                    <div class="col"><label>{{this.qty}}</label></div>
+                                    <div class="col">
+                                        <h4>Productos Entregados</h4>
+                                    </div>
                                 </div>
-                                {{/each}}
-                                {{#if solicitudes.PrEntregados}}
-                                <hr class="mt-4 mb-2">
                                 <div class="row mt-2">
-                                    <div class="col mt-2">
-                                        <h4>Entregado por</h4>
-                                        <hr>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <h4>Fecha Entrega</h4>
-                                        <hr>
-                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col">Nombre producto</div>
+                                    <div class="col-md-3"></div>
+                                    <div class="col">Cantidad Entregada</div>
                                 </div>
-                                <div class="row mt-1">
-                                    <div class="col">{{solicitudes.Id_Usuario_Entrega }}</div>
-                                    <div class="col">{{solicitudes.F_Respuesta}}</div>
-                                </div>
-                                <div class="row">
-                                    <div class="row mt-4">
+                                <br>
+                                <div class="row mt-3 mb-5">
+                                    {{#each solicitudes.PrEntregados}}
+                                    <div class="row">
                                         <div class="col-md-1"></div>
-                                        <div class="col">
-                                            <h4>Productos Entregados</h4>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-1"></div>
-                                        <div class="col">Nombre producto</div>
-                                        <div class="col-md-3"></div>
-                                        <div class="col">Cantidad Entregada</div>
-                                    </div>
-                                    <br>
-                                    <div class="row mt-3 mb-5">
-                                            {{#each solicitudes.PrEntregados}}
-                                            <div class="row">
-                                                <div class="col-md-1"></div>
-                                                <div class="col"><label>{{this.items.N_Producto}}</label></div>
-                                                <div class="col-md-5"><input type="hidden" name="IDp"
-                                                        value="{{this.items.Id_Producto}}" /></div>
+                                        <div class="col"><label>{{this.items.N_Producto}}</label></div>
+                                        <div class="col-md-5"><input type="hidden" name="IDp"
+                                                value="{{this.items.Id_Producto}}" /></div>
 
-                                                <div class="col"><span style="width: 20%;"
-                                                        class="ms-4">{{this.qty}}</span></div>
-                                            </div>
-                                            {{/each}}
-                                    </div>
-                                    {{/if}}
-                                    <div class="row mt-4">
-                                        <div class="col-md-2"></div>
-                                        <div class="col mb-4">
-                                            <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Leave a comment here"
-                                                    name="Observacion" id="floatingTextarea2"
-                                                    style="height: 100px;overflow:auto;resize:none"
-                                                    disabled>{{solicitudes.Observacion}}</textarea>
-                                                <label for="floatingTextarea2">Observación en Solicitud</label>
-                                            </div>
+                                        <div class="col"><span style="width: 20%;" class="ms-4">{{this.qty}}</span>
                                         </div>
-                                        <div class="col-md-2"></div>
                                     </div>
-                            </form>
+                                    {{/each}}
+                                </div>
+                                {{/if}}
+                                <div class="row mt-4">
+                                    <div class="col-md-2"></div>
+                                    <div class="col mb-4">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                name="Observacion" id="floatingTextarea2"
+                                                style="height: 100px;overflow:auto;resize:none"
+                                                disabled>{{solicitudes.Observacion}}</textarea>
+                                            <label for="floatingTextarea2">Observación en Solicitud</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>

@@ -6,6 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+#nbproject
+nbproject
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -107,3 +110,4 @@ testcon.js
  
 # VsCounter
 .VSCodeCounter
+/nbproject/private/

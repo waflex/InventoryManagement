@@ -75,7 +75,7 @@ router.post('/Auth/CambiarContrasena', isLoggedIn, helpers.Compare, async(req, r
 
 
 
-//CERRAR SESION MIRA LA WEA FACIL, MANSO WEBEO PA INICIAR SESION Y PA CERRAR?
+//CERRAR SESION
 router.get('/logout', isLoggedIn, (req, res) => {
     req.session.level3 = false;
     req.session.level2 = false;
@@ -87,8 +87,14 @@ router.get('/logout', isLoggedIn, (req, res) => {
 });
 
 
+//CONTROL USUARIOS
 router.get("/ControlUsuarios", isLoggedIn, async(req, res) => {
-    var maxPages = await pool.query("SELECT * FROM users");
+    var maxPages;
+    try {
+        maxPages = await pool.query("SELECT * FROM users");
+    } catch (error) {
+
+    }
     const perPage = parseInt(maxPages.length / 10) + 1;
     const page = req.query.p;
     var min;
@@ -159,6 +165,8 @@ router.post("/ControlUsuarios", isLoggedIn, async(req, res) => {
     });
 });
 
+
+//MODIFICAR USUARIOS
 router.get("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     const { ID } = req.params;
     var usuario = await pool.query('SELECT * FROM users WHERE ID =?', ID);
@@ -196,16 +204,18 @@ router.post("/ModificarUsuario/:ID", isLoggedIn, async(req, res) => {
     res.redirect("/ModificarUsuario/" + ID);
 });
 
+//REESTABLECER CONTRASEÑA
 router.get("/Reestablecer/:ID", isLoggedIn, async(req, res) => {
     const id = req.params.ID;
     var psw = "Lautaro950";
-    psw = helpers.encryptPassword(psw);
+    psw = await helpers.encryptPassword(psw);
     psw = { Cont_usu: psw };
     await pool.query('UPDATE users SET ? WHERE ID = ?', [psw, id]);
     res.redirect("/ControlUsuarios?p=1");
 
 });
 
+//ELIMINAR USUARIO
 router.get("/Eliminar/:ID", isLoggedIn, async(req, res) => {
     const id = req.params.ID;
     await pool.query('DELETE FROM users WHERE ID=?', [id]);
@@ -213,6 +223,7 @@ router.get("/Eliminar/:ID", isLoggedIn, async(req, res) => {
 
 });
 
+//MOVIMIENTOS REALIZADOS POR EL USUARIO
 router.get("/Movimientos/:ID", isLoggedIn, async(req, res) => {
     const ID = req.params.ID;
     const data = await pool.query('SELECT * FROM modificaciones_productos WHERE Id_Usuario =?', ID);
